@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block non-content paths
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://multipost.pro/sitemap.xml
