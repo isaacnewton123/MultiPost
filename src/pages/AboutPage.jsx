@@ -1,19 +1,17 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { 
-  Box, 
-  Container, 
-  Typography, 
-  Grid, 
-  Button, 
-  useTheme,
-  Paper,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { useTheme } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import { m } from 'framer-motion';
 
 // Icons

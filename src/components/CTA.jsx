@@ -1,5 +1,10 @@
 import React from 'react';
-import { Box, Container, Typography, Button, Paper, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import { useTheme } from '@mui/material/styles';
 import { m } from 'framer-motion';
 import { Link } from 'react-router-dom';
 

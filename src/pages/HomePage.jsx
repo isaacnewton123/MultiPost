@@ -1,18 +1,16 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { 
-  Box, 
-  Container, 
-  Typography, 
-  Button, 
-  Grid, 
-  Card, 
-  CardContent,
-  Stack, 
-  useTheme,
-  Paper
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 import { m } from 'framer-motion';
 
 // Icons

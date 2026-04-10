@@ -4,21 +4,19 @@ import ReactMarkdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
 import SEO from '../components/SEO';
 import { getPostBySlug, getAllPosts, formatDate } from '../utils/blog';
-import {
-  Box,
-  Container,
-  Typography,
-  Chip,
-  Stack,
-  Divider,
-  Button,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Grid,
-  useTheme,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import { useTheme } from '@mui/material/styles';
 import { m } from 'framer-motion';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';

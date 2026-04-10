@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { 
-  Box, 
-  Container, 
-  Typography, 
-  Button, 
-  Card, 
-  CardContent, 
-  Grid, 
-  Stack, 
-  Chip,
-  Paper,
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Switch,
-  useTheme
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
+import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Switch from '@mui/material/Switch';
+import { useTheme } from '@mui/material/styles';
 import { m } from 'framer-motion';
 
 // Icons

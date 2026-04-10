@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { 
-  Box, 
-  Container, 
-  Grid, 
-  Typography, 
-  Link, 
-  Stack, 
-  IconButton, 
-  useTheme,
-  Divider
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import { useTheme } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import XIcon from '@mui/icons-material/X';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';

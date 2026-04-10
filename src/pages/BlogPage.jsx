@@ -3,20 +3,18 @@ import { useSearchParams, Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import SEO from '../components/SEO';
 import { getAllPosts, getCategories, formatDate } from '../utils/blog';
-import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  CardActionArea,
-  Button,
-  Chip,
-  Divider,
-  useTheme,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import CardActionArea from '@mui/material/CardActionArea';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
+import { useTheme } from '@mui/material/styles';
 import { m } from 'framer-motion';
 
 // Icons

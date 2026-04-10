@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { 
-  Box, 
-  Container, 
-  Typography, 
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Button,
-  Paper,
-  useTheme,
-  Grid,
-  Divider
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import { useTheme } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 import { m } from 'framer-motion';
 
 // Icons

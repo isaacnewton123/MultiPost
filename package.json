@@ -26,7 +26,6 @@
     "react-helmet-async": "^3.0.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^6.19.0",
-    "react-scroll": "^1.9.0",
     "remark-breaks": "^4.0.0"
   },
   "devDependencies": {
