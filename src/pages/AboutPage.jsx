@@ -111,7 +111,7 @@ const MILESTONES = [
     year: '2026 Q1',
     title: 'The Idea Is Born',
     description:
-      'Frustrated with manually uploading the same video to 8+ platforms, founder Isaac Newton starts building a unified posting tool.',
+      'Frustrated with manually uploading the same video to 8+ platforms, founder Hanif Maulana (Isaac Newton) starts building a unified posting tool.',
   },
   {
     year: '2026 Q2',
@@ -270,7 +270,7 @@ const AboutPage = () => {
     <Box sx={{ minHeight: '100vh' }}>
       <SEO
         title="About Us — Our Story, Mission & The Team Behind MultiPost"
-        description="Discover who's behind MultiPost — the free auto-posting tool for content creators. Meet founder Isaac Newton, explore our mission to simplify multi-platform video distribution, and learn the values that drive us."
+        description="Discover who's behind MultiPost — the free auto-posting tool for content creators. Meet founder Hanif Maulana (Isaac Newton), explore our mission to simplify multi-platform video distribution, and learn the values that drive us."
         path="/about"
         schema={aboutPageSchema}
       />
@@ -461,7 +461,7 @@ const AboutPage = () => {
                 >
                   <Avatar
                     src={FOUNDER_PHOTO}
-                    alt="Isaac Newton — Founder of MultiPost"
+                    alt="Hanif Maulana — Founder of MultiPost"
                     sx={{
                       width: { xs: 80, sm: 100, md: 120 },
                       height: { xs: 80, sm: 100, md: 120 },
@@ -476,7 +476,7 @@ const AboutPage = () => {
                     gutterBottom
                     sx={{ fontSize: { xs: '1.15rem', md: '1.25rem' } }}
                   >
-                    Isaac Newton
+                    Hanif Maulana (Isaac Newton)
                   </Typography>
                   <Typography
                     variant="subtitle2"
@@ -506,7 +506,7 @@ const AboutPage = () => {
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          aria-label={`Visit Isaac Newton's ${social.label} profile`}
+                          aria-label={`Visit Hanif Maulana's ${social.label} profile`}
                           size="small"
                           sx={{
                             color: theme.palette.text.secondary,
