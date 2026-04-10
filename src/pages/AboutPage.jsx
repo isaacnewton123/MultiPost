@@ -177,7 +177,7 @@ const aboutPageSchema = [
       foundingDate: '2026',
       founder: {
         '@type': 'Person',
-        name: 'Isaac Newton',
+        name: 'Hanif Maulana (Isaac Newton)',
         jobTitle: 'Founder & Lead Developer',
         url: 'https://github.com/isaacnewton123',
         image: FOUNDER_PHOTO,
@@ -401,7 +401,7 @@ const AboutPage = () => {
                 sx={{ mb: 2.5, lineHeight: 1.8, fontSize: { xs: '0.9rem', md: '1rem' } }}
               >
                 MultiPost was born out of a real frustration. As a content creator, our founder
-                Isaac Newton found himself spending hours each week doing the same repetitive
+                Hanif Maulana (Isaac Newton) found himself spending hours each week doing the same repetitive
                 task: uploading the same video to YouTube, then TikTok, then Instagram, then
                 Facebook, then X, then LinkedIn — adjusting titles, descriptions, and thumbnails
                 for each platform.
