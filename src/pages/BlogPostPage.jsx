@@ -118,7 +118,8 @@ const BlogPostPage = () => {
           <Box
             component="img"
             src={post.image}
-            alt={post.title}
+            alt={`${post.title} — MultiPost blog`}
+            loading="lazy"
             sx={{
               width: '100%',
               height: { xs: 220, sm: 320, md: 420 },
@@ -265,7 +266,7 @@ const BlogPostPage = () => {
         {/* Related Posts */}
         {related.length > 0 && (
           <Box sx={{ mt: 8 }}>
-            <Typography variant="h4" fontWeight={700} sx={{ mb: 4 }}>
+            <Typography variant="h4" component="h2" fontWeight={700} sx={{ mb: 4 }}>
               Related Articles
             </Typography>
             <Grid container spacing={3}>
@@ -277,7 +278,8 @@ const BlogPostPage = () => {
                         component="img"
                         height="160"
                         image={rp.image}
-                        alt={rp.title}
+                        alt={`${rp.title} — MultiPost blog`}
+                        loading="lazy"
                       />
                       <CardContent>
                         <Chip label={rp.category} size="small" color="primary" sx={{ mb: 1, fontWeight: 500, fontSize: '0.7rem' }} />

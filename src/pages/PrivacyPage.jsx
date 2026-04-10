@@ -50,7 +50,7 @@ const PrivacyPage = () => {
       icon: <DataUsageIcon color="primary" />,
       content: `We collect information you provide directly to us and information we collect automatically when you use the Services.\n\n**Information You Provide:**
 * **Account Information:** When you register directly with our service (if applicable), we collect your name and email address. If password-based login is offered, your password is collected but stored only in a securely hashed format, never directly. We may also collect your phone number if you provide it.
-* **Subscription & Payment Information:** When you subscribe to a paid plan, we collect information necessary to process your payment (such as billing details) through our third-party payment processor (e.g., Midtrans). We do not directly store your full credit card details.
+* **Subscription & Payment Information:** Our Free plan does not require any payment information. When you subscribe to a paid plan, we collect information necessary to process your payment (such as billing details) through our third-party payment processor (e.g., Midtrans). We do not directly store your full credit card details.
 * **YouTube Account Information:** When you connect your YouTube accounts via Google OAuth, we receive information associated with those accounts, such as channel IDs, channel names, profile pictures, and access tokens (stored securely encrypted) necessary to perform actions on your behalf (like uploading videos). This process does not give us access to your Google account password.
 * **Video Metadata:** Information you provide for video uploads, such as titles, descriptions, tags, thumbnails, and scheduling details, stored in templates or during the upload process.
 * **Support Communications:** Information you provide when you contact us for support via email, AI Chat, or Live Chat, including the content of your messages and any attachments (like images in Live Chat).\n
@@ -151,7 +151,7 @@ However, no internet transmission or electronic storage method is 100% secure, s
     >
       <SEO
         title="Privacy Policy"
-        description="Read MultiPost's Privacy Policy. Learn how we collect, use, and protect your data."
+        description="Read MultiPost's Privacy Policy. Learn how we collect, use, and protect your data on our free video distribution and auto posting platform."
         path="/privacy"
       />
       {/* Header */}

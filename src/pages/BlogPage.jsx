@@ -94,8 +94,8 @@ const BlogPage = () => {
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <SEO
-        title={currentPage > 1 ? `Blog — Page ${currentPage}` : 'Blog'}
-        description="Tips, strategies, and insights on multi-platform content distribution, short-form video optimization, and social media growth."
+        title={currentPage > 1 ? `Blog — Page ${currentPage}` : 'Blog — Free Auto Posting Tips & Video Distribution'}
+        description="Tips, strategies, and insights on multi-platform content distribution, free auto posting, short-form video optimization, and social media growth with unlimited platform connections."
         path={seoPath}
       />
       {/* Pagination link hints for crawlers */}
@@ -225,7 +225,8 @@ const BlogPage = () => {
                       component="img"
                       height="200"
                       image={post.image}
-                      alt={post.title}
+                      alt={`${post.title} — MultiPost blog`}
+                      loading="lazy"
                     />
                     <CardContent sx={{ flexGrow: 1, p: 3 }}>
                       <Box sx={{ mb: 2 }}>

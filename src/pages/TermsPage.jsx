@@ -65,7 +65,7 @@ const TermsPage = () => {
       id: 'subscription-terms',
       title: 'Subscriptions, Fees, and Payment',
       icon: <PaymentIcon color="primary" />,
-      content: `* **Plans:** Access to certain features and usage limits are based on subscription plans. Details of current plans and pricing are available on our website or within the Service.\n* **Fees:** You agree to pay all fees associated with your chosen subscription plan in accordance with the pricing and payment terms presented to you.\n* **Payment Processor:** We use a third-party payment processor (e.g., Midtrans) to handle payments. Your use of the payment services is subject to the processor\'s terms and conditions.\n* **Billing:** Subscriptions are billed in advance on a recurring basis (e.g., monthly or annually). You authorize us (through our processor) to charge your chosen payment method for the recurring fees.\n* **Automatic Renewal:** **Your subscription will automatically renew at the end of each billing period unless you cancel it *before* the end of the current period.** You can manage or cancel your subscription through your account settings or by contacting support.\n* **Cancellation:** If you cancel, your subscription remains active until the end of the current paid period; you will not be charged for the next cycle. Access to paid features ceases at the end of the paid period.\n* **Refunds:** You may request a refund for your **initial** subscription payment within **seven (7) days** of the transaction date by contacting support@multipost.pro. Approved refunds are subject to a **20% deduction** from the original amount paid to cover payment gateway processing fees. Refunds are **not available** for subscription renewals, partial subscription periods beyond the initial 7 days, or if you have violated these Terms.\n* **Price Changes:** We reserve the right to change subscription fees. We will provide you with reasonable prior notice (e.g., 30 days) of any price changes. Your continued use of the Service after a price change constitutes your agreement to pay the new price.\n* **Taxes:** You are responsible for any applicable taxes associated with your subscription fees.`
+      content: `* **Free Tier:** Access to the Service is available at no cost via the Free plan, which includes limited usage (e.g., 5 automated posts per month, 2 connected platforms). The Free plan does not require payment information.\n* **Paid Plans:** Access to additional features and higher usage limits are based on paid subscription plans. Details of current plans and pricing are available on our website or within the Service.\n* **Fees:** You agree to pay all fees associated with your chosen subscription plan in accordance with the pricing and payment terms presented to you.\n* **Payment Processor:** We use a third-party payment processor (e.g., Midtrans) to handle payments. Your use of the payment services is subject to the processor\'s terms and conditions.\n* **Billing:** Paid subscriptions are billed in advance on a recurring basis (e.g., monthly or annually). You authorize us (through our processor) to charge your chosen payment method for the recurring fees.\n* **Automatic Renewal:** **Your paid subscription will automatically renew at the end of each billing period unless you cancel it *before* the end of the current period.** You can manage or cancel your subscription through your account settings or by contacting support.\n* **Cancellation:** If you cancel a paid subscription, it remains active until the end of the current paid period; you will not be charged for the next cycle. Your account reverts to the Free plan at the end of the paid period.\n* **Refunds:** You may request a refund for your **initial** subscription payment within **seven (7) days** of the transaction date by contacting support@multipost.pro. Approved refunds are subject to a **20% deduction** from the original amount paid to cover payment gateway processing fees. Refunds are **not available** for subscription renewals, partial subscription periods beyond the initial 7 days, or if you have violated these Terms.\n* **Price Changes:** We reserve the right to change subscription fees. We will provide you with reasonable prior notice (e.g., 30 days) of any price changes. Your continued use of the Service after a price change constitutes your agreement to pay the new price.\n* **Taxes:** You are responsible for any applicable taxes associated with your subscription fees.`
     },
     {
       id: 'use-restrictions',
@@ -161,7 +161,7 @@ In no event shall our aggregate liability for all claims relating to the service
     >
       <SEO
         title="Terms of Service"
-        description="Read MultiPost's Terms of Service. Understand your rights and responsibilities when using our platform."
+        description="Read MultiPost's Terms of Service. Free to start — understand your rights and responsibilities when using our free auto posting and video distribution platform."
         path="/terms"
       />
       {/* Header */}
@@ -402,7 +402,7 @@ In no event shall our aggregate liability for all claims relating to the service
                   px: 4
                 }}
               >
-                Pre-Marketing
+                Get-Waitlist
               </Button>
             </Box>
           </Box>

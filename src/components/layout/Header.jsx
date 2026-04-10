@@ -68,7 +68,7 @@ function Header({ scrolled }) {
             <Box 
               component="img" 
               src={logoImg} 
-              alt="MultiPost Logo"
+              alt="MultiPost — multi-platform video distribution tool"
               sx={{ 
                 height: 50, 
                 display: 'flex',
@@ -138,7 +138,7 @@ function Header({ scrolled }) {
                 }
               }}
             >
-              Pre-Marketing
+              Get-Waitlist
             </Button>
           </Box>
 
@@ -147,7 +147,7 @@ function Header({ scrolled }) {
             <IconButton
               edge="end"
               color={scrolled ? "primary" : "default"}
-              aria-label="menu"
+              aria-label="Open navigation menu"
               onClick={handleDrawerToggle}
               sx={{
                 color: scrolled ? 'primary.main' : 'text.primary',
@@ -188,7 +188,7 @@ function Header({ scrolled }) {
           <Box 
             component="img" 
             src={logoImg} 
-            alt="MultiPost Logo"
+            alt="MultiPost — multi-platform video distribution tool"
             sx={{ 
               height: 40, 
               mb: 4,
@@ -234,7 +234,7 @@ function Header({ scrolled }) {
               rel="noopener noreferrer"
               sx={{ mt: 4 }}
             >
-              Pre-Marketing
+              Get-Waitlist
             </Button>
           </Box>
         </Box>

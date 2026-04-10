@@ -64,8 +64,8 @@ const HomePage = () => {
   return (
     <Box>
       <SEO
-        title="One Video. Every Platform. Zero Friction."
-        description="Distribute your short-form content to YouTube, TikTok, Instagram, Facebook & more in a single click. Stay algorithmically compliant everywhere."
+        title="Free Auto Posting Tool — One Video. Every Platform. Zero Friction."
+        description="Start for Free with MultiPost — the free auto posting tool for video distribution. Distribute short-form content to YouTube, TikTok, Instagram, Facebook & more in a single click."
         path="/"
       />
       {/* Hero Section */}
@@ -141,7 +141,7 @@ const HomePage = () => {
                     lineHeight: 1.6,
                   }}
                 >
-                  Distribute your short-form content to YouTube, TikTok, Instagram, Facebook & more in a single click. Stay algorithmically compliant everywhere.
+                  Free to start, upgrade for more power. Distribute your short-form content to YouTube, TikTok, Instagram, Facebook & more in a single click.
                 </Typography>
               </Box>
 
@@ -175,7 +175,7 @@ const HomePage = () => {
                     fontSize: '1.1rem',
                   }}
                 >
-                  Pre-Marketing
+                  Start for Free
                 </Button>
                 <Button
                   variant="outlined"
@@ -318,7 +318,8 @@ const HomePage = () => {
                   <Box 
                     component="img"
                     src={logoImg}
-                    alt="MultiPost Dashboard Preview"
+                    alt="MultiPost auto-posting dashboard for multi-platform video distribution"
+                    loading="lazy"
                     sx={{
                       width: '80%',
                       borderRadius: 3,
@@ -482,7 +483,8 @@ const HomePage = () => {
             }}
           >
             <Typography 
-              variant="h2" 
+              variant="h2"
+              component="h2"
               gutterBottom
               sx={{
                 fontWeight: 700,
@@ -490,7 +492,7 @@ const HomePage = () => {
                 mb: 3,
               }}
             >
-              Ready to Streamline Your Workflow?
+              Start for Free — Streamline Your Workflow
             </Typography>
             
             <Typography 
@@ -502,7 +504,7 @@ const HomePage = () => {
                 mx: 'auto'
               }}
             >
-              Join leading content creators who are saving time and growing their audience with MultiPost.
+              Join leading content creators who start for free and grow their audience with MultiPost. No credit card required.
             </Typography>
             
             <Button
@@ -521,7 +523,7 @@ const HomePage = () => {
                 borderRadius: 10,
               }}
             >
-              Pre-Marketing Today
+              Start for Free
             </Button>
           </Box>
         </Container>

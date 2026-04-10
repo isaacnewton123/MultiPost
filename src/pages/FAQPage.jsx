@@ -51,7 +51,7 @@ const FAQPage = () => {
       faqs: [
         {
           question: 'What is MultiPost?',
-          answer: 'MultiPost is a comprehensive platform that allows content creators to upload and manage videos across multiple social media platforms simultaneously. Our tool streamlines the process of distributing content, saving time and effort.'
+          answer: 'MultiPost is a comprehensive platform that allows content creators to upload and manage videos across multiple social media platforms simultaneously. Free to start, upgrade for more power — our tool streamlines the process of distributing content, saving time and effort.'
         },
         {
           question: 'Which social media platforms are supported?',
@@ -64,6 +64,10 @@ const FAQPage = () => {
         {
           question: 'Is my data secure with MultiPost?',
           answer: 'Absolutely. We take data security very seriously. We use industry-standard encryption, secure OAuth connections, and never store your social media passwords. All data is processed in compliance with GDPR and other privacy regulations.'
+        },
+        {
+          question: 'Is MultiPost really free?',
+          answer: 'Yes! Our Free Tier is completely free forever — no credit card required. You get 1 daily upload, 5 scheduled uploads per month, unlimited platform connections, basic video metadata, custom thumbnails, and standard support (AI & Live Chat). When you need more uploads or advanced features, you can upgrade to a paid plan anytime.'
         }
       ]
     },
@@ -93,11 +97,11 @@ const FAQPage = () => {
       faqs: [
         {
           question: 'How much does MultiPost cost?',
-          answer: 'We offer several pricing tiers to accommodate different needs. Our Basic plan starts at $4.55/month, the Premium plan at $9.09/month, and the Enterprise plan at $21.21/month. Annual subscriptions are available with significant savings. Please visit our Pricing page for detailed information.'
+          answer: 'MultiPost is free to start! Our Free Tier gives you 1 daily upload, 5 scheduled uploads per month, and unlimited platform connections at no cost. For more power, paid plans start at $4.99/month (Basic), $9.99/month (Premium), and $21.99/month (Enterprise). Annual subscriptions are available with a 20% discount. Visit our Pricing page for full details.'
         },
         {
-          question: 'Is there a free trial available?',
-          answer: 'No, we currently don\'t offer a free trial. However, we provide a 30-day money-back guarantee if you\'re not satisfied with our service.'
+          question: 'Do I need a credit card to start?',
+          answer: 'No! You can start using MultiPost completely free — no credit card required. Our Free Tier includes 1 daily upload, 5 scheduled uploads per month, and unlimited platform connections. You only need payment information when you decide to upgrade to a paid plan.'
         },
         {
           question: 'Can I upgrade or downgrade my plan at any time?',
@@ -153,6 +157,22 @@ const FAQPage = () => {
     }
   ];
 
+  // Build FAQPage JSON-LD schema for Google rich snippets
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqCategories.flatMap(category =>
+      category.faqs.map(faq => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      }))
+    ),
+  };
+
   // Filter FAQs based on search query
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -172,9 +192,10 @@ const FAQPage = () => {
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <SEO
-        title="FAQ"
-        description="Get answers to frequently asked questions about MultiPost — accounts, uploads, platform support, billing, and more."
+        title="FAQ — Free Auto Posting Tool"
+        description="Get answers to frequently asked questions about MultiPost — the free auto posting tool. Learn about our Free Tier, free video distribution, accounts, uploads, and billing."
         path="/faq"
+        schema={faqSchema}
       />
       {/* Hero Section */}
       <Box
@@ -347,7 +368,8 @@ const FAQPage = () => {
                       variants={fadeInUp}
                     >
                       <Typography 
-                        variant="h4" 
+                        variant="h4"
+                        component="h2"
                         gutterBottom 
                         sx={{ 
                           fontWeight: 700,
@@ -448,6 +470,7 @@ const FAQPage = () => {
           >
             <Typography
               variant="h3"
+              component="h2"
               gutterBottom
               sx={{
                 fontWeight: 700,

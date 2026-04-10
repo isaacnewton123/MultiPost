@@ -100,7 +100,7 @@ const Footer = () => {
               <Box 
                 component="img" 
                 src={logoImg} 
-                alt="MultiPost Logo"
+                alt="MultiPost — multi-platform video distribution tool"
                 sx={{ height: 45, mr: 1 }}
               />
             </Box>
@@ -113,7 +113,7 @@ const Footer = () => {
                 aria-label="Facebook" 
                 size="medium"
                 component="a"
-                href="https://www.facebook.com/hanif.maulana.108"
+                href="https://www.facebook.com/share/1GUhpG8mHu/"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{ 
@@ -133,7 +133,7 @@ const Footer = () => {
                 aria-label="X" 
                 size="medium"
                 component="a"
-                href="https://x.com/isaac_newton252"
+                href="https://x.com/multipost_pro"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{ 
@@ -153,7 +153,7 @@ const Footer = () => {
                 aria-label="LinkedIn" 
                 size="medium"
                 component="a"
-                href="https://www.linkedin.com/in/hanif-maulana-210b4721b/"
+                href="https://www.linkedin.com/in/multi-post-b642b1402"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{ 
@@ -173,7 +173,7 @@ const Footer = () => {
                 aria-label="Instagram" 
                 size="medium"
                 component="a"
-                href="https://www.instagram.com/hanifmaulana2/"
+                href="https://www.instagram.com/multipost.pro/"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{ 
@@ -193,7 +193,7 @@ const Footer = () => {
                 aria-label="YouTube" 
                 size="medium"
                 component="a"
-                href="https://www.youtube.com/@isaacnewton7777"
+                href="https://www.youtube.com/@multipostpro"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{ 

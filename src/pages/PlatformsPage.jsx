@@ -109,8 +109,8 @@ const PlatformsPage = () => {
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <SEO
-        title="Supported Platforms"
-        description="MultiPost supports YouTube Shorts, TikTok, Instagram Reels, Facebook Reels, and more. Distribute content natively across every major platform."
+        title="Supported Platforms — Free Auto Posting Tool | Unlimited Connections"
+        description="MultiPost supports YouTube Shorts, TikTok, Instagram Reels, Facebook Reels, and more. Free auto posting tool with unlimited platform connections. Distribute content natively across every major platform."
         path="/platforms"
       />
       {/* Hero Section */}
@@ -123,47 +123,38 @@ const PlatformsPage = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={8} lg={7}>
-              <Box
-                component={motion.div}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-              >
-                <Typography
-                  variant="h1"
-                  gutterBottom
-                  sx={{
-                    fontWeight: 800,
-                    fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
-                    mb: 2,
-                  }}
-                >
-                  Connect With <Box component="span" sx={{ color: theme.palette.secondary.main }}>Every Platform</Box>
-                </Typography>
-              </Box>
+          <Box
+            component={motion.div}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            sx={{ textAlign: 'center', maxWidth: 800, mx: 'auto' }}
+          >
+            <Typography
+              variant="h1"
+              gutterBottom
+              sx={{
+                fontWeight: 800,
+                fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
+                mb: 2,
+              }}
+            >
+              Connect With <Box component="span" sx={{ color: theme.palette.secondary.main }}>Every Platform</Box>
+            </Typography>
 
-              <Box
-                component={motion.div}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-              >
-                <Typography
-                  variant="h5"
-                  sx={{
-                    opacity: 0.9,
-                    mb: 4,
-                    maxWidth: 600,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  MultiPost seamlessly integrates with all major social media platforms, giving you complete control from a single dashboard.
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
+            <Typography
+              variant="h5"
+              sx={{
+                opacity: 0.9,
+                mb: 4,
+                maxWidth: 700,
+                mx: 'auto',
+                lineHeight: 1.6,
+              }}
+            >
+              MultiPost seamlessly integrates with all major social media platforms, giving you complete control from a single dashboard.
+            </Typography>
+          </Box>
         </Container>
       </Box>
 
@@ -374,7 +365,7 @@ const PlatformsPage = () => {
                 fontSize: '1.1rem',
               }}
             >
-              Pre-Marketing Today
+              Get-Waitlist Today
             </Button>
           </Paper>
         </Container>

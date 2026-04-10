@@ -25,7 +25,7 @@ import { motion } from 'framer-motion';
 // Icons
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import StarIcon from '@mui/icons-material/Star';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 // Animation variants
@@ -55,52 +55,71 @@ const PricingPage = () => {
   // Subscription plans data
   const plans = [
     {
+      id: 'free',
+      name: 'Free',
+      price: 0,
+      yearly: 0,
+      popular: false,
+      label: 'Free Forever',
+      features: [
+        '1 Daily Upload',
+        '5 Scheduled Uploads per month',
+        'Unlimited Platform Connections',
+        'Basic Video Metadata',
+        'Custom Thumbnails',
+        'Standard Support (AI & Live Chat)'
+      ]
+    },
+    {
       id: 'basic',
       name: 'Basic',
-      price: 4.55,
-      yearly: 43.68,
+      price: 4.99,
+      yearly: 47.99,
       popular: false,
-      maxUploadsPerDay: 3,
       features: [
-        'Daily Upload',
-        'Basic video metadata',
-        'Custom thumbnails',
-        'Standard support via AI & Live Chat',
-        'Single user access'
+        '3 Daily Uploads',
+        '10 Scheduled Uploads per month',
+        'Unlimited Platform Connections',
+        'Basic Video Metadata',
+        'Custom Thumbnails',
+        'save drafts',
+        'Auto-Retry Failed Uploads',
+        'Standard Support (AI & Live Chat)'
       ]
     },
     {
       id: 'premium',
       name: 'Premium',
-      price: 9.09,
-      yearly: 87.26,
+      price: 9.99,
+      yearly: 95.99,
       popular: true,
-      maxUploadsPerDay: 5,
       features: [
-        'All Basic features',
-        'Advanced video settings',
-        'Upload subtitles & captions',
-        'Define video chapters',
-        'Add end screens & cards',
-        'Scheduled uploads',
-        'Video templates',
-        'Priority AI & Live Chat support'
+        '5 Daily Uploads',
+        '30 Scheduled Uploads per month',
+        'Unlimited Platform Connections',
+        'Advanced Video Settings',
+        'Upload Subtitles & Captions',
+        'Define Video Chapters',
+        'Add End Screens & Cards',
+        'Priority AI & Live Chat Support'
       ]
     },
     {
       id: 'enterprise',
       name: 'Enterprise',
-      price: 21.21,
-      yearly: 203.62,
+      price: 21.99,
+      yearly: 211.09,
       popular: false,
-      maxUploadsPerDay: 10,
       features: [
-        'All Premium features',
-        'Custom upload workflows',
+        '10 Daily Uploads',
+        'Unlimited Scheduled Uploads',
+        'Unlimited Platform Connections',
+        'All Premium Features',
+        'Custom Upload Workflows',
         'Analytics & Insights',
-        'API access',
-        'Custom features development',
-        'Dedicated support manager'
+        'API Access',
+        'Custom Features Development',
+        'Dedicated Support Manager'
       ]
     }
   ];
@@ -117,8 +136,8 @@ const PricingPage = () => {
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <SEO
-        title="Pricing"
-        description="Choose the right MultiPost plan for your content workflow. Free, Basic, Premium, and Enterprise plans to fit creators of every size."
+        title="Pricing — Free Auto Posting Tool | Unlimited Platform Connections"
+        description="Start for Free with MultiPost — the free auto posting tool for video distribution. Free Tier includes 1 daily upload, 5 scheduled uploads per month, and unlimited platform connections. Upgrade anytime for more power."
         path="/pricing"
       />
       {/* Hero section */}
@@ -147,7 +166,7 @@ const PricingPage = () => {
                 mb: 2,
               }}
             >
-              Simple, Transparent <Box component="span" sx={{ color: theme.palette.secondary.main }}>Pricing</Box>
+              Start Free, <Box component="span" sx={{ color: theme.palette.secondary.main }}>Upgrade Anytime</Box>
             </Typography>
             
             <Typography
@@ -160,7 +179,7 @@ const PricingPage = () => {
                 lineHeight: 1.6,
               }}
             >
-              Choose the plan that fits your content creation needs. All plans include our core features to streamline your social media content management.
+              Free to start, upgrade for more power. Choose the plan that fits your content creation needs — from our forever-free tier to enterprise solutions.
             </Typography>
 
             {/* Billing toggle */}
@@ -222,11 +241,13 @@ const PricingPage = () => {
             animate="visible"
           >
             {plans.map((plan) => (
-              <Grid item xs={12} md={4} key={plan.id} component={motion.div} variants={fadeInUp}>
+              <Grid item xs={12} sm={6} md={3} key={plan.id} component={motion.div} variants={fadeInUp}>
                 <Card
                   elevation={plan.popular ? 8 : 1}
                   sx={{
                     height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
                     borderRadius: 4,
                     position: 'relative',
                     transition: 'transform 0.3s, box-shadow 0.3s',
@@ -237,117 +258,64 @@ const PricingPage = () => {
                     ...(plan.popular && {
                       borderTop: '4px solid',
                       borderColor: 'secondary.main',
+                      overflow: 'visible',
                     }),
                   }}
                 >
                   {plan.popular && (
-                    <>
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: -40,
-                          right: 0,
-                          width: '100%',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          zIndex: 5
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            backgroundColor: '#FF9800',
-                            color: 'white',
-                            fontWeight: 800,
-                            fontSize: '1rem',
-                            px: 5,
-                            py: 1.5,
-                            borderRadius: '20px 20px 0 0',
-                            boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            letterSpacing: '1px',
-                            textTransform: 'uppercase'
-                          }}
-                        >
-                          <StarIcon sx={{ mr: 1, fontSize: '1.2rem', color: 'yellow' }} />
-                          Most Popular
-                        </Box>
-                      </Box>
-                      
-                      {/* Ribbon on the corner */}
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: 20,
-                          right: -30,
-                          backgroundColor: '#FF9800',
-                          color: 'white',
-                          fontWeight: 800,
-                          px: 4,
-                          py: 0.5,
-                          fontSize: '0.75rem',
-                          transform: 'rotate(45deg)',
-                          transformOrigin: 'center',
-                          boxShadow: '0 2px 4px rgba(0,0,0,0.25)',
-                          zIndex: 10,
-                          letterSpacing: '0.5px',
-                          textTransform: 'uppercase'
-                        }}
-                      >
-                        Best Value
-                      </Box>
-                      
-                      <Box 
-                        sx={{ 
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          width: '100%',
-                          height: '100%',
-                          border: '4px solid',
-                          borderColor: '#FF9800',
-                          borderRadius: 4,
-                          zIndex: 1,
-                          pointerEvents: 'none'
-                        }}
-                      />
-                    </>
+                    <Chip
+                      icon={<StarIcon sx={{ fontSize: '1rem', color: '#FF9800' }} />}
+                      label="Best Value"
+                      sx={{
+                        position: 'absolute',
+                        top: -14,
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        fontWeight: 700,
+                        fontSize: '0.75rem',
+                        backgroundColor: '#FFF3E0',
+                        color: '#E65100',
+                        letterSpacing: '0.5px',
+                        zIndex: 5,
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
+                      }}
+                    />
                   )}
-                  <CardContent sx={{ p: 4 }}>
+                  <CardContent sx={{ p: 4, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                     <Typography variant="h4" component="h2" fontWeight={700} gutterBottom>
                       {plan.name}
                     </Typography>
                     
                     <Box sx={{ my: 4 }}>
-                      <Typography variant="h3" component="p" fontWeight={800}>
-                        {formatPrice(annually ? plan.yearly : plan.price)}
-                        <Typography component="span" variant="body2" color="text.secondary">
-                          /{annually ? 'year' : 'month'}
-                        </Typography>
-                      </Typography>
-                      
-                      {annually && (
-                        <Typography variant="body2" color="success.main" fontWeight={500}>
-                          Save {formatPrice((plan.price * 12) - plan.yearly)} per year
-                        </Typography>
+                      {plan.price === 0 ? (
+                        <>
+                          <Typography variant="h3" component="p" fontWeight={800}>
+                            $0
+                          </Typography>
+                          <Typography variant="body2" color="success.main" fontWeight={500}>
+                            {plan.label || 'Free forever'} — no credit card required
+                          </Typography>
+                        </>
+                      ) : (
+                        <>
+                          <Typography variant="h3" component="p" fontWeight={800}>
+                            {formatPrice(annually ? plan.yearly : plan.price)}
+                            <Typography component="span" variant="body2" color="text.secondary">
+                              /{annually ? 'year' : 'month'}
+                            </Typography>
+                          </Typography>
+                          {annually && (
+                            <Typography variant="body2" color="success.main" fontWeight={500}>
+                              Save {formatPrice((plan.price * 12) - plan.yearly)} per year
+                            </Typography>
+                          )}
+                        </>
                       )}
                     </Box>
                     
                     <Divider sx={{ my: 3 }} />
                     
-                    <List sx={{ mb: 3 }}>
-                      <ListItem sx={{ px: 0 }}>
-                      </ListItem>
-                      <ListItem sx={{ px: 0 }}>
-                        <ListItemIcon sx={{ minWidth: 36 }}>
-                          <CloudUploadIcon sx={{ color: 'error.main' }} />
-                        </ListItemIcon>
-                        <ListItemText 
-                          primary={`${plan.maxUploadsPerDay} Daily Uploads`} 
-                          primaryTypographyProps={{ fontWeight: 600 }}
-                        />
-                      </ListItem>
-                      
+                    <List sx={{ mb: 3, flexGrow: 1 }}>
                       {plan.features.map((feature, index) => (
                         <ListItem key={index} sx={{ px: 0 }}>
                           <ListItemIcon sx={{ minWidth: 36 }}>
@@ -360,21 +328,22 @@ const PricingPage = () => {
                     
                     <Button
                       variant="contained"
-                      color={plan.popular ? "secondary" : "primary"}
+                      color="primary"
                       fullWidth
                       size="large"
                       component="a"
                       href="/contact"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Get-Waitlist for MultiPost ${plan.name} plan`}
                       endIcon={<ArrowForwardIcon />}
                       sx={{
                         py: 1.5,
                         fontWeight: 600,
-                        mt: 2,
+                        mt: 'auto',
                       }}
                     >
-                      Pre-Marketing
+                      Get-Waitlist
                     </Button>
                   </CardContent>
                 </Card>
@@ -397,11 +366,11 @@ const PricingPage = () => {
               textAlign: 'center',
             }}
           >
-            <Typography variant="h5" fontWeight={700} gutterBottom>
+            <Typography variant="h5" component="h2" fontWeight={700} gutterBottom>
               Need a custom solution?
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ mb: 3, maxWidth: 700, mx: 'auto' }}>
-              If you have specific requirements or need more YouTube accounts, contact us for a tailored solution that fits your business needs.
+              If you have specific requirements or need a tailored solution for your team, contact us for a plan that fits your business needs.
             </Typography>
             <Button
               variant="outlined"
@@ -417,14 +386,14 @@ const PricingPage = () => {
           
           {/* FAQ section */}
           <Box sx={{ mt: 10 }}>
-            <Typography variant="h4" fontWeight={700} textAlign="center" gutterBottom>
+            <Typography variant="h4" component="h2" fontWeight={700} textAlign="center" gutterBottom>
               Frequently Asked Questions
             </Typography>
             
             <Grid container spacing={4} sx={{ mt: 2 }}>
               <Grid item xs={12} md={6}>
                 <Card elevation={0} sx={{ p: 3, height: '100%', borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
-                  <Typography variant="h6" fontWeight={600} gutterBottom>
+                  <Typography variant="h6" component="h3" fontWeight={600} gutterBottom>
                     How are subscriptions billed?
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -435,7 +404,7 @@ const PricingPage = () => {
               
               <Grid item xs={12} md={6}>
                 <Card elevation={0} sx={{ p: 3, height: '100%', borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
-                  <Typography variant="h6" fontWeight={600} gutterBottom>
+                  <Typography variant="h6" component="h3" fontWeight={600} gutterBottom>
                     Can I upgrade my plan later?
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -446,22 +415,22 @@ const PricingPage = () => {
               
               <Grid item xs={12} md={6}>
                 <Card elevation={0} sx={{ p: 3, height: '100%', borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
-                  <Typography variant="h6" fontWeight={600} gutterBottom>
-                    How many YouTube accounts can I connect?
+                  <Typography variant="h6" component="h3" fontWeight={600} gutterBottom>
+                    How many platforms can I connect?
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    The number of YouTube accounts you can connect depends on your plan: Basic (3 accounts), Premium (10 accounts), or Enterprise (30+ accounts). Enterprise customers can request additional accounts.
+                    All plans — including the Free tier — include Unlimited Platform Connections. Connect to YouTube, TikTok, Instagram, and every supported platform at no extra cost.
                   </Typography>
                 </Card>
               </Grid>
               
               <Grid item xs={12} md={6}>
                 <Card elevation={0} sx={{ p: 3, height: '100%', borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
-                  <Typography variant="h6" fontWeight={600} gutterBottom>
-                    Is there a free trial available?
+                  <Typography variant="h6" component="h3" fontWeight={600} gutterBottom>
+                    Is MultiPost really free?
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    No, we currently don't offer a free trial. However, we provide a 30-day money-back guarantee if you're not satisfied with our service.
+                    Yes! Our Free Tier is free forever — no credit card required. You get 1 daily upload, 5 scheduled uploads per month, unlimited platform connections, basic video metadata, custom thumbnails, and standard support. When you're ready for more, simply upgrade to a paid plan.
                   </Typography>
                 </Card>
               </Grid>
@@ -495,6 +464,7 @@ const PricingPage = () => {
           >
             <Typography
               variant="h3"
+              component="h2"
               gutterBottom
               sx={{
                 fontWeight: 700,
@@ -529,7 +499,7 @@ const PricingPage = () => {
                 fontSize: '1.1rem',
               }}
             >
-              Pre-Marketing Today
+              Get-Waitlist Today
             </Button>
           </Card>
         </Container>

@@ -125,7 +125,7 @@ const CTA = () => {
                   minWidth: 200,
                 }}
               >
-                Pre-Marketing
+                Get-Waitlist
               </Button>
               
               <Button

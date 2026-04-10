@@ -6,25 +6,103 @@ const DEFAULT_DESCRIPTION = 'Save time and grow your audience with MultiPost. Di
 const SITE_URL = 'https://multipost.pro';
 const DEFAULT_IMAGE = 'https://multipost.pro/LogoWithoutBG.png';
 
-const SEO = ({ title, description, path = '/', image, article, publishedTime, author, tags }) => {
+// ── Default Schemas ─────────────────────────────────────────────────
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: DEFAULT_IMAGE,
+  sameAs: [
+    'https://www.facebook.com/share/1GUhpG8mHu/',
+    'https://x.com/multipost_pro',
+    'https://www.linkedin.com/in/multi-post-b642b1402',
+    'https://www.instagram.com/multipost.pro/',
+    'https://www.youtube.com/@multipostpro',
+  ],
+};
+
+const softwareApplicationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: SITE_NAME,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web, Windows, macOS, iOS, Android',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+  },
+  url: SITE_URL,
+  description: DEFAULT_DESCRIPTION,
+};
+
+// ── Component ───────────────────────────────────────────────────────
+const SEO = ({
+  title,
+  description,
+  path = '/',
+  image,
+  article,
+  publishedTime,
+  author,
+  tags,
+  schema,
+}) => {
   const pageTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} - One Video. Every Platform. Zero Friction.`;
   const pageDescription = description || DEFAULT_DESCRIPTION;
   const canonicalUrl = `${SITE_URL}${path}`;
   const ogImage = image || DEFAULT_IMAGE;
   const ogType = article ? 'article' : 'website';
 
-  const jsonLd = article ? {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: title,
-    description: pageDescription,
-    image: ogImage,
-    url: canonicalUrl,
-    datePublished: publishedTime,
-    author: { '@type': 'Person', name: author || SITE_NAME },
-    publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
-    keywords: tags ? tags.join(', ') : undefined,
-  } : null;
+  // ── Build the list of JSON-LD schemas to inject ───────────────────
+  const schemas = [];
+
+  // 1. Always inject Organization
+  schemas.push(organizationSchema);
+
+  // 2. Article — enhanced BlogPosting schema
+  if (article) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title,
+      description: pageDescription,
+      image: ogImage,
+      url: canonicalUrl,
+      datePublished: publishedTime,
+      author: { '@type': 'Person', name: author || SITE_NAME },
+      publisher: {
+        '@type': 'Organization',
+        name: SITE_NAME,
+        url: SITE_URL,
+        logo: {
+          '@type': 'ImageObject',
+          url: DEFAULT_IMAGE,
+        },
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonicalUrl,
+      },
+      keywords: tags ? tags.join(', ') : undefined,
+    });
+  }
+
+  // 3. Home page — inject SoftwareApplication by default
+  if (path === '/' && !schema) {
+    schemas.push(softwareApplicationSchema);
+  }
+
+  // 4. Custom schema(s) passed via prop
+  if (schema) {
+    if (Array.isArray(schema)) {
+      schemas.push(...schema);
+    } else {
+      schemas.push(schema);
+    }
+  }
 
   return (
     <Helmet>
@@ -50,12 +128,12 @@ const SEO = ({ title, description, path = '/', image, article, publishedTime, au
       <meta name="twitter:description" content={pageDescription} />
       <meta name="twitter:image" content={ogImage} />
 
-      {/* JSON-LD structured data for articles */}
-      {jsonLd && (
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
+      {/* JSON-LD structured data */}
+      {schemas.map((s, i) => (
+        <script type="application/ld+json" key={i}>
+          {JSON.stringify(s)}
         </script>
-      )}
+      ))}
     </Helmet>
   );
 };

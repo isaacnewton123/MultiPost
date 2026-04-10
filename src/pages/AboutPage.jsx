@@ -65,8 +65,8 @@ const AboutPage = () => {
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <SEO
-        title="About Us"
-        description="Learn about MultiPost's mission to empower content creators with effortless multi-platform video distribution."
+        title="About Us — Free Auto Posting Tool"
+        description="Learn about MultiPost's mission to empower content creators with effortless, free multi-platform video distribution. Unlimited platform connections, zero friction."
         path="/about"
       />
       {/* Hero Section */}
@@ -79,47 +79,38 @@ const AboutPage = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={8} lg={7}>
-              <Box
-                component={motion.div}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-              >
-                <Typography
-                  variant="h1"
-                  gutterBottom
-                  sx={{
-                    fontWeight: 800,
-                    fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
-                    mb: 2,
-                  }}
-                >
-                  About <Box component="span" sx={{ color: theme.palette.secondary.main }}>MultiPost</Box>
-                </Typography>
-              </Box>
+          <Box
+            component={motion.div}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            sx={{ textAlign: 'center', maxWidth: 800, mx: 'auto' }}
+          >
+            <Typography
+              variant="h1"
+              gutterBottom
+              sx={{
+                fontWeight: 800,
+                fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
+                mb: 2,
+              }}
+            >
+              About <Box component="span" sx={{ color: theme.palette.secondary.main }}>MultiPost</Box>
+            </Typography>
 
-              <Box
-                component={motion.div}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-              >
-                <Typography
-                  variant="h5"
-                  sx={{
-                    opacity: 0.9,
-                    mb: 4,
-                    maxWidth: 600,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  We're a passionate team of developers and content creators on a mission to simplify the way digital content is managed and distributed.
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
+            <Typography
+              variant="h5"
+              sx={{
+                opacity: 0.9,
+                mb: 4,
+                maxWidth: 700,
+                mx: 'auto',
+                lineHeight: 1.6,
+              }}
+            >
+              We're a passionate team of developers and content creators on a mission to simplify the way digital content is managed and distributed.
+            </Typography>
+          </Box>
         </Container>
       </Box>
 
@@ -142,7 +133,7 @@ const AboutPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <Typography variant="h3" gutterBottom fontWeight={700}>
+              <Typography variant="h3" component="h2" gutterBottom fontWeight={700}>
                 Our Story
               </Typography>
               <Typography 
@@ -198,7 +189,7 @@ const AboutPage = () => {
                     p: 3,
                   }}
                 >
-                  <Typography variant="h5" fontWeight={700}>
+                  <Typography variant="h5" component="h2" fontWeight={700}>
                     Our Mission
                   </Typography>
                 </Box>
@@ -259,6 +250,7 @@ const AboutPage = () => {
           >
             <Typography
               variant="h3"
+              component="h2"
               gutterBottom
               sx={{
                 fontWeight: 700,
@@ -293,7 +285,7 @@ const AboutPage = () => {
                 fontSize: '1.1rem',
               }}
             >
-              Pre-Marketing Today
+              Get-Waitlist Today
             </Button>
           </Paper>
         </Container>

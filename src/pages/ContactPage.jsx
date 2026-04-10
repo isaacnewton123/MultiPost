@@ -123,8 +123,8 @@ const ContactPage = () => {
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <SEO
-        title="Contact Us"
-        description="Have questions about MultiPost? Reach out to our team for support, partnerships, or sales inquiries."
+        title="Contact Us — Free Auto Posting Tool"
+        description="Have questions about MultiPost? Reach out to our team for support, partnerships, or sales inquiries. Start for free with unlimited platform connections."
         path="/contact"
       />
       {/* Hero Section */}
@@ -166,7 +166,7 @@ const ContactPage = () => {
                 lineHeight: 1.6,
               }}
             >
-              Have questions or ready to Pre-Marketing? Our team is here to help you streamline your content management.
+              Have questions or ready to Get-Waitlist? Our team is here to help you streamline your content management.
             </Typography>
           </Box>
         </Container>
@@ -217,7 +217,7 @@ const ContactPage = () => {
                   border: '1px solid rgba(0, 0, 0, 0.08)',
                 }}
               >
-                <Typography variant="h4" gutterBottom fontWeight={700} sx={{ mb: 4 }}>
+                <Typography variant="h4" component="h2" gutterBottom fontWeight={700} sx={{ mb: 4 }}>
                   Send Us a Message
                 </Typography>
                 
@@ -369,7 +369,7 @@ const ContactPage = () => {
                   }}
                 >
                   <CardContent sx={{ p: 4 }}>
-                    <Typography variant="h5" gutterBottom fontWeight={700} sx={{ mb: 3 }}>
+                    <Typography variant="h5" component="h2" gutterBottom fontWeight={700} sx={{ mb: 3 }}>
                       Contact Information
                     </Typography>
                     
@@ -398,6 +398,7 @@ const ContactPage = () => {
                         href="https://www.facebook.com/share/1GUhpG8mHu/"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Follow MultiPost on Facebook"
                         sx={{ 
                           minWidth: 0, 
                           p: 1,
@@ -413,6 +414,7 @@ const ContactPage = () => {
                         href="https://x.com/MultiPost_pro"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Follow MultiPost on X"
                         sx={{ 
                           minWidth: 0, 
                           p: 1,
@@ -428,6 +430,7 @@ const ContactPage = () => {
                         href="https://www.linkedin.com/in/multi-post-b642b1402"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Follow MultiPost on LinkedIn"
                         sx={{ 
                           minWidth: 0, 
                           p: 1,
@@ -443,6 +446,7 @@ const ContactPage = () => {
                         href="https://www.instagram.com/multipost.pro"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Follow MultiPost on Instagram"
                         sx={{ 
                           minWidth: 0, 
                           p: 1,
@@ -458,6 +462,7 @@ const ContactPage = () => {
                         href="https://www.youtube.com/@multipostpro"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Follow MultiPost on YouTube"
                         sx={{ 
                           minWidth: 0,
                           p: 1,
