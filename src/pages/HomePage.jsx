@@ -24,8 +24,6 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import MusicNoteIcon from '@mui/icons-material/MusicNote'; // TikTok representation
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-// Background image
-import bgImage from '../assets/images/auth-bg.jpg';
 // Logo
 import logoImg from '../assets/images/LogoWithBG.webp';
 
@@ -87,9 +85,7 @@ const HomePage = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: `linear-gradient(135deg, rgba(7, 11, 25, 0.95) 0%, rgba(21, 32, 66, 0.85) 100%), url(${bgImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            background: 'linear-gradient(135deg, #070b19 0%, #152042 100%)',
             zIndex: 0,
           }}
         />

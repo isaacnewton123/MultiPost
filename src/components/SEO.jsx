@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 const SITE_NAME = 'MultiPost';
 const DEFAULT_DESCRIPTION = 'Save time and grow your audience with MultiPost. Distribute short-form videos to YouTube, TikTok, Instagram, Facebook & more in a single click.';
 const SITE_URL = 'https://multipost.pro';
-const DEFAULT_IMAGE = 'https://multipost.pro/LogoWithoutBG.png';
+const DEFAULT_IMAGE = 'https://multipost.pro/LogoWithBG.webp';
 
 // ── Default Schemas ─────────────────────────────────────────────────
 const organizationSchema = {
