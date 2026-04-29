@@ -7,7 +7,7 @@
 // Files prefixed with `_` are NOT exposed as Vercel API routes, so
 // this module is safely importable from `waitlist.js`.
 
-const DEFAULT_LOGO_URL = 'https://multipost.pro/LogoWithBG.webp';
+const DEFAULT_LOGO_URL = 'https://multipost.pro/favicon-96x96.png';
 const DEFAULT_SITE_URL = 'https://multipost.pro';
 
 const SOCIAL_LINKS = [
