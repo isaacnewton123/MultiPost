@@ -33,7 +33,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAltOutlined';
 const PrivacyPage = () => {
   const theme = useTheme();
   
-  const lastUpdated = 'April 23, 2025';
+  const lastUpdated = 'May 2, 2025';
   
   const sections = [
     {

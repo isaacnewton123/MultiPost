@@ -87,7 +87,7 @@ const FeaturesPage = () => {
     },
     {
       title: 'Performance Analytics',
-      description: 'Track video performance metrics across platforms to optimize your content strategy.',
+      description: 'Monitor your upload activity and track distribution status across all connected platforms from a unified dashboard.',
       icon: <AnalyticsIcon sx={{ fontSize: 50, color: theme.palette.primary.main }} />,
       category: 'analytics'
     },

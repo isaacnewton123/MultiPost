@@ -19,6 +19,9 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import MusicNoteIcon from '@mui/icons-material/MusicNote'; // Representing TikTok
+import XIcon from '@mui/icons-material/X';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import PinterestIcon from '@mui/icons-material/Pinterest';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
@@ -76,31 +79,73 @@ const PlatformsPage = () => {
     },
     {
       name: 'Instagram',
-      description: 'Post to your Instagram feed or IGTV. Optimize video formats and apply filters before publishing.',
+      description: 'Post Reels to your Instagram account. Optimize video formats and manage captions before publishing.',
       icon: <InstagramIcon sx={{ fontSize: 40, color: '#E4405F' }} />,
       color: '#E4405F',
       features: [
-        'Feed and IGTV support',
+        'Reels upload support',
         'Format optimization',
-        'Filter application',
-        'Caption templates',
-        'Hashtag management'
+        'Caption management',
+        'Hashtag management',
+        'Professional account integration'
       ],
       available: true
     },
     {
       name: 'TikTok',
-      description: 'Reach a younger audience with short-form videos optimized for TikTok\'s vertical format and trending sounds.',
+      description: 'Reach a younger audience with short-form videos optimized for TikTok\'s vertical format and trending content.',
       icon: <MusicNoteIcon sx={{ fontSize: 40, color: '#000000' }} />,
       color: '#EE1D52',
       features: [
-        'Custom sound integration',
-        'Effect application',
-        'Trending hashtags',
+        'Direct video uploads',
+        'Privacy & comment controls',
+        'Hashtag management',
         'Multi-account management',
-        'Performance analytics'
+        'Scheduled publishing'
       ],
       available: true
+    },
+    {
+      name: 'X (Twitter)',
+      description: 'Share your video content directly to your X timeline. Engage with your audience through replies and retweets.',
+      icon: <XIcon sx={{ fontSize: 40, color: '#000000' }} />,
+      color: '#000000',
+      features: [
+        'Direct video uploads',
+        'Thread creation support',
+        'Media tags',
+        'Scheduled publishing',
+        'Analytics integration'
+      ],
+      available: false
+    },
+    {
+      name: 'LinkedIn',
+      description: 'Publish professional video content to your personal profile or company page to reach B2B audiences.',
+      icon: <LinkedInIcon sx={{ fontSize: 40, color: '#0A66C2' }} />,
+      color: '#0A66C2',
+      features: [
+        'Profile and page uploads',
+        'Professional networking',
+        'Engagement analytics',
+        'Caption support',
+        'Scheduled publishing'
+      ],
+      available: false
+    },
+    {
+      name: 'Pinterest',
+      description: 'Upload video pins to specific boards. Drive traffic to your website with visually engaging content.',
+      icon: <PinterestIcon sx={{ fontSize: 40, color: '#E60023' }} />,
+      color: '#E60023',
+      features: [
+        'Video pin creation',
+        'Board selection',
+        'Link management',
+        'Visual search optimization',
+        'Scheduled publishing'
+      ],
+      available: false
     }
   ];
 

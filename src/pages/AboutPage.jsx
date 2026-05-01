@@ -123,7 +123,7 @@ const MILESTONES = [
     year: '2026 Q3',
     title: 'Expanding The Platform',
     description:
-      'Added batch processing, scheduled uploads, and support for X (Twitter), LinkedIn, and Pinterest. Waitlist grows to thousands of creators.',
+      'Added batch processing, scheduled uploads, and client-side video optimization. Planning support for X (Twitter), LinkedIn, and Pinterest. Waitlist grows to thousands of creators.',
   },
   {
     year: '2026 Q4',
@@ -138,7 +138,7 @@ const WHY_MULTIPOST = [
     icon: <CloudUploadIcon />,
     title: 'One Upload, Every Platform',
     description:
-      'Upload once and let MultiPost distribute your content to YouTube, TikTok, Instagram Reels, Facebook, X, LinkedIn, Pinterest, and more — simultaneously.',
+      'Upload once and let MultiPost distribute your content to YouTube, TikTok, Instagram, Facebook, and (Coming Soon) X, LinkedIn, Pinterest — simultaneously.',
   },
   {
     icon: <SpeedIcon />,

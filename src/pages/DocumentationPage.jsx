@@ -914,9 +914,9 @@ const DocumentationPage = () => {
                   <Grid container spacing={2} sx={{ mb: 4 }}>
                     {[
                       { name: 'Free', price: '$0/mo', highlight: false, features: ['1 daily upload', '5 scheduled uploads/month', 'Unlimited platform connections', 'Basic video metadata', 'Custom thumbnails', 'Standard support (AI & Live Chat)'] },
-                      { name: 'Basic', price: '$4.99/mo', highlight: false, features: ['3 daily uploads', '10 scheduled uploads/month', 'Unlimited platform connections', 'Save drafts', 'Auto-retry failed uploads', 'Standard support'] },
-                      { name: 'Premium', price: '$9.99/mo', highlight: false, features: ['5 daily uploads', '30 scheduled uploads/month', 'Unlimited platform connections', 'Captions & chapters', 'Priority support'] },
-                      { name: 'Enterprise', price: '$21.99/mo', highlight: false, features: ['10 daily uploads', 'Unlimited scheduled uploads', 'Unlimited platform connections', 'Analytics & insights', 'API access', 'Dedicated manager'] },
+                      { name: 'Basic', price: '$1.99/mo', highlight: false, features: ['3 daily uploads', '10 scheduled uploads/month', 'Unlimited platform connections', 'Save drafts', 'Auto-retry failed uploads', 'Standard support'] },
+                      { name: 'Premium', price: '$4.99/mo', highlight: false, features: ['5 daily uploads', '30 scheduled uploads/month', 'Unlimited platform connections', 'Captions & chapters', 'Priority support'] },
+                      { name: 'Enterprise', price: '$9.99/mo', highlight: false, features: ['10 daily uploads', 'Unlimited scheduled uploads', 'Unlimited platform connections', 'Analytics & insights', 'API access', 'Dedicated manager'] },
                     ].map((plan, i) => (
                       <Grid item xs={12} sm={6} md={3} key={i}>
                         <Card sx={{ 

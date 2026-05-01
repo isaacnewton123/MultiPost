@@ -53,7 +53,7 @@ const FAQPage = () => {
         },
         {
           question: 'Which social media platforms are supported?',
-          answer: 'We currently support YouTube, Facebook, Instagram, Twitter, TikTok, LinkedIn, and several other platforms. We regularly add new platforms based on user demand and market trends.'
+          answer: 'We currently support YouTube, Facebook, Instagram, and TikTok with full upload and scheduling integration. Additional platforms including X (Twitter), LinkedIn, and Pinterest are coming soon. We regularly add new platforms based on user demand and market trends.'
         },
         {
           question: 'Do I need to create an account to use MultiPost?',
@@ -95,7 +95,7 @@ const FAQPage = () => {
       faqs: [
         {
           question: 'How much does MultiPost cost?',
-          answer: 'MultiPost is free to start! Our Free Tier gives you 1 daily upload, 5 scheduled uploads per month, and unlimited platform connections at no cost. For more power, paid plans start at $4.99/month (Basic), $9.99/month (Premium), and $21.99/month (Enterprise). Annual subscriptions are available with a 20% discount. Visit our Pricing page for full details.'
+          answer: 'MultiPost is free to start! Our Free Tier gives you 1 daily upload, 5 scheduled uploads per month, and unlimited platform connections at no cost. For more power, paid plans start at $1.99/month (Basic), $4.99/month (Premium), and $9.99/month (Enterprise). Annual subscriptions are available with a 20% discount. Visit our Pricing page for full details.'
         },
         {
           question: 'Do I need a credit card to start?',
@@ -116,11 +116,11 @@ const FAQPage = () => {
       faqs: [
         {
           question: 'What kind of support is available?',
-          answer: 'All users have access to our knowledge base and email support. Pro users get priority email support with faster response times. Enterprise customers receive dedicated account managers and phone support.'
+          answer: 'All users have access to our AI Assistant (Firdha AI) and Live Chat support. Premium users get priority AI & Live Chat support with faster response times. Enterprise customers receive a dedicated support manager and custom features development.'
         },
         {
           question: 'How quickly can I expect a response from support?',
-          answer: 'Basic users typically receive responses within 24-48 hours. Pro users can expect responses within 12 hours. Enterprise support SLAs guarantee responses within 4 hours during business hours.'
+          answer: 'Free and Basic users typically receive responses within 24-48 hours. Premium users can expect responses within 12 hours. Enterprise support SLAs guarantee responses within 4 hours during business hours.'
         },
         {
           question: 'Is there a community forum for users?',
@@ -128,7 +128,7 @@ const FAQPage = () => {
         },
         {
           question: 'Do you offer training for new users?',
-          answer: 'Yes, we provide free tutorials and documentation for all users. Pro users get access to advanced webinars, while Enterprise customers receive personalized onboarding and training sessions.'
+          answer: 'Yes, we provide free tutorials and documentation for all users. Premium users get access to advanced webinars, while Enterprise customers receive personalized onboarding and training sessions.'
         }
       ]
     },

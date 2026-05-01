@@ -28,8 +28,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }
   }
@@ -48,7 +48,7 @@ const staggerContainer = {
 const PricingPage = () => {
   const theme = useTheme();
   const [annually, setAnnually] = useState(false);
-  
+
   // Subscription plans data
   const plans = [
     {
@@ -61,6 +61,7 @@ const PricingPage = () => {
       features: [
         '1 Daily Upload',
         '5 Scheduled Uploads per month',
+        '720p Quality',
         'Unlimited Platform Connections',
         'Basic Video Metadata',
         'Custom Thumbnails',
@@ -70,16 +71,17 @@ const PricingPage = () => {
     {
       id: 'basic',
       name: 'Basic',
-      price: 4.99,
-      yearly: 47.99,
+      price: 1.99,
+      yearly: 19.09,
       popular: false,
       features: [
         '3 Daily Uploads',
         '10 Scheduled Uploads per month',
+        '1080p Quality',
         'Unlimited Platform Connections',
         'Basic Video Metadata',
         'Custom Thumbnails',
-        'save drafts',
+        'Save Drafts',
         'Auto-Retry Failed Uploads',
         'Standard Support (AI & Live Chat)'
       ]
@@ -87,12 +89,14 @@ const PricingPage = () => {
     {
       id: 'premium',
       name: 'Premium',
-      price: 9.99,
-      yearly: 95.99,
+      price: 4.99,
+      yearly: 47.89,
       popular: true,
       features: [
         '5 Daily Uploads',
         '30 Scheduled Uploads per month',
+        '1440p Quality',
+        'Analytics & Insights',
         'Unlimited Platform Connections',
         'Advanced Video Settings',
         'Upload Subtitles & Captions',
@@ -104,16 +108,17 @@ const PricingPage = () => {
     {
       id: 'enterprise',
       name: 'Enterprise',
-      price: 21.99,
-      yearly: 211.09,
+      price: 9.99,
+      yearly: 95.89,
       popular: false,
       features: [
         '10 Daily Uploads',
         'Unlimited Scheduled Uploads',
+        '4k video quality',
         'Unlimited Platform Connections',
         'All Premium Features',
         'Custom Upload Workflows',
-        'Analytics & Insights',
+        'Advanced Analytics',
         'API Access',
         'Custom Features Development',
         'Dedicated Support Manager'
@@ -165,7 +170,7 @@ const PricingPage = () => {
             >
               Start Free, <Box component="span" sx={{ color: theme.palette.secondary.main }}>Upgrade Anytime</Box>
             </Typography>
-            
+
             <Typography
               variant="h5"
               component="p"
@@ -231,9 +236,9 @@ const PricingPage = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Grid 
-            container 
-            spacing={4} 
+          <Grid
+            container
+            spacing={4}
             justifyContent="center"
             component={m.div}
             variants={staggerContainer}
@@ -285,7 +290,7 @@ const PricingPage = () => {
                     <Typography variant="h4" component="h2" fontWeight={700} gutterBottom>
                       {plan.name}
                     </Typography>
-                    
+
                     <Box sx={{ my: 4 }}>
                       {plan.price === 0 ? (
                         <>
@@ -312,9 +317,9 @@ const PricingPage = () => {
                         </>
                       )}
                     </Box>
-                    
+
                     <Divider sx={{ my: 3 }} />
-                    
+
                     <List sx={{ mb: 3, flexGrow: 1 }}>
                       {plan.features.map((feature, index) => (
                         <ListItem key={index} sx={{ px: 0 }}>
@@ -325,7 +330,7 @@ const PricingPage = () => {
                         </ListItem>
                       ))}
                     </List>
-                    
+
                     <Button
                       variant="contained"
                       color="primary"
@@ -350,14 +355,14 @@ const PricingPage = () => {
               </Grid>
             ))}
           </Grid>
-          
+
           {/* Enterprise call to action */}
           <Paper
             component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.7 } }}
             elevation={0}
-            sx={{ 
+            sx={{
               mt: 8,
               p: 4,
               borderRadius: 4,
@@ -383,13 +388,13 @@ const PricingPage = () => {
               Contact Us
             </Button>
           </Paper>
-          
+
           {/* FAQ section */}
           <Box sx={{ mt: 10 }}>
             <Typography variant="h4" component="h2" fontWeight={700} textAlign="center" gutterBottom>
               Frequently Asked Questions
             </Typography>
-            
+
             <Grid container spacing={4} sx={{ mt: 2 }}>
               <Grid item xs={12} md={6}>
                 <Card elevation={0} sx={{ p: 3, height: '100%', borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
@@ -401,7 +406,7 @@ const PricingPage = () => {
                   </Typography>
                 </Card>
               </Grid>
-              
+
               <Grid item xs={12} md={6}>
                 <Card elevation={0} sx={{ p: 3, height: '100%', borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
                   <Typography variant="h6" component="h3" fontWeight={600} gutterBottom>
@@ -412,7 +417,7 @@ const PricingPage = () => {
                   </Typography>
                 </Card>
               </Grid>
-              
+
               <Grid item xs={12} md={6}>
                 <Card elevation={0} sx={{ p: 3, height: '100%', borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
                   <Typography variant="h6" component="h3" fontWeight={600} gutterBottom>
@@ -423,7 +428,7 @@ const PricingPage = () => {
                   </Typography>
                 </Card>
               </Grid>
-              
+
               <Grid item xs={12} md={6}>
                 <Card elevation={0} sx={{ p: 3, height: '100%', borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
                   <Typography variant="h6" component="h3" fontWeight={600} gutterBottom>
@@ -438,7 +443,7 @@ const PricingPage = () => {
           </Box>
         </Container>
       </Box>
-      
+
       {/* CTA Section */}
       <Box
         sx={{
