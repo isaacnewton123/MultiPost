@@ -159,7 +159,7 @@ const HomePage = () => {
                   color="secondary"
                   size="large"
                   component="a"
-                  href="/contact"
+                  href="https://app.multipost.pro"
                   target="_blank"
                   rel="noopener noreferrer"
                   endIcon={<ArrowForwardIcon />}
@@ -511,7 +511,7 @@ const HomePage = () => {
               color="secondary"
               size="large"
               component="a"
-              href="/contact"
+              href="https://app.multipost.pro"
               target="_blank"
               rel="noopener noreferrer"
               endIcon={<ArrowForwardIcon />}

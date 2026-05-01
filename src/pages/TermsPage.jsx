@@ -391,7 +391,7 @@ In no event shall our aggregate liability for all claims relating to the service
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button 
                 component="a"
-                href="/contact"
+                href="https://app.multipost.pro"
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="contained" 
@@ -400,7 +400,7 @@ In no event shall our aggregate liability for all claims relating to the service
                   px: 4
                 }}
               >
-                Get-Waitlist
+                Get Started
               </Button>
             </Box>
           </Box>

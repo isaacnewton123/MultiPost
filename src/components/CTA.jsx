@@ -120,7 +120,7 @@ const CTA = () => {
                 color="secondary"
                 size="large"
                 component="a"
-                href="/contact"
+                href="https://app.multipost.pro"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{ 
@@ -130,7 +130,7 @@ const CTA = () => {
                   minWidth: 200,
                 }}
               >
-                Get-Waitlist
+                Get Started
               </Button>
               
               <Button

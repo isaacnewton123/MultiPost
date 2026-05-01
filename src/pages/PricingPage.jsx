@@ -332,10 +332,10 @@ const PricingPage = () => {
                       fullWidth
                       size="large"
                       component="a"
-                      href="/contact"
+                      href="https://app.multipost.pro"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`Get-Waitlist for MultiPost ${plan.name} plan`}
+                      aria-label={`Get Started for MultiPost ${plan.name} plan`}
                       endIcon={<ArrowForwardIcon />}
                       sx={{
                         py: 1.5,
@@ -343,7 +343,7 @@ const PricingPage = () => {
                         mt: 'auto',
                       }}
                     >
-                      Get-Waitlist
+                      Get Started
                     </Button>
                   </CardContent>
                 </Card>
@@ -490,7 +490,7 @@ const PricingPage = () => {
               color="secondary"
               size="large"
               component="a"
-              href="/contact"
+              href="https://app.multipost.pro"
               target="_blank"
               rel="noopener noreferrer"
               endIcon={<ArrowForwardIcon />}
@@ -500,7 +500,7 @@ const PricingPage = () => {
                 fontSize: '1.1rem',
               }}
             >
-              Get-Waitlist Today
+              Get Started Today
             </Button>
           </Card>
         </Container>

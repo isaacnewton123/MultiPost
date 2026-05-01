@@ -126,7 +126,7 @@ function Header({ scrolled }) {
               variant="contained" 
               color="secondary"
               component="a"
-              href="/contact"
+              href="https://app.multipost.pro"
               target="_blank"
               rel="noopener noreferrer"
               sx={{
@@ -139,7 +139,7 @@ function Header({ scrolled }) {
                 }
               }}
             >
-              Get-Waitlist
+              Get Started
             </Button>
           </Box>
 
@@ -233,12 +233,12 @@ function Header({ scrolled }) {
               color="secondary"
               fullWidth
               component="a"
-              href="/contact"
+              href="https://app.multipost.pro"
               target="_blank"
               rel="noopener noreferrer"
               sx={{ mt: 4 }}
             >
-              Get-Waitlist
+              Get Started
             </Button>
           </Box>
         </Box>

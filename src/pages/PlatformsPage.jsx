@@ -353,7 +353,7 @@ const PlatformsPage = () => {
               color="secondary"
               size="large"
               component="a"
-              href="/contact"
+              href="https://app.multipost.pro"
               target="_blank"
               rel="noopener noreferrer"
               endIcon={<ArrowForwardIcon />}
@@ -363,7 +363,7 @@ const PlatformsPage = () => {
                 fontSize: '1.1rem',
               }}
             >
-              Get-Waitlist Today
+              Get Started Today
             </Button>
           </Paper>
         </Container>

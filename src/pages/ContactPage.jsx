@@ -164,7 +164,7 @@ const ContactPage = () => {
                 lineHeight: 1.6,
               }}
             >
-              Have questions or ready to Get-Waitlist? Our team is here to help you streamline your content management.
+              Have questions or ready to Get Started? Our team is here to help you streamline your content management.
             </Typography>
           </Box>
         </Container>

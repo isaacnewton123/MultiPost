@@ -43,7 +43,7 @@ Every page is wrapped in a shared layout shell:
 
 ### Header (`src/components/layout/Header.jsx`)
 - Sticky navbar with transparent-to-solid scroll transition
-- Desktop: horizontal nav links + "Get-Waitlist" CTA button
+- Desktop: horizontal nav links + "Get Started" CTA button
 - Mobile: hamburger menu → drawer navigation
 - `aria-label="Open navigation menu"` on mobile toggle
 
@@ -67,7 +67,7 @@ Every page is wrapped in a shared layout shell:
 |---|---|---|
 | 1 | **Hero** | Full-viewport gradient with h1 tagline, subtitle, "Start for Free" CTA, "Learn More" button, and supported platform icons (YouTube, Facebook, TikTok) |
 | 2 | **Key Features** | 3-column card grid: Multi-Platform Upload, Batch Processing, Scheduled Uploads. Each card: icon + h3 title + description |
-| 3 | **CTA** | Full-width gradient banner: "Start for Free — Streamline Your Workflow" + Get-Waitlist button |
+| 3 | **CTA** | Full-width gradient banner: "Start for Free — Streamline Your Workflow" + Get Started button |
 
 ### Layout Notes
 - Hero: 2-column grid (text left, logo visual right on desktop; stacks on mobile)
@@ -114,7 +114,7 @@ Every page is wrapped in a shared layout shell:
 |---|---|---|
 | 1 | **Hero** | Centered gradient hero with h1 "Supported Platforms" |
 | 2 | **Platform Grid** | Cards for each platform (YouTube, TikTok, Instagram, Facebook, etc.) with icon, name, status, and supported content types |
-| 3 | **CTA** | Get-Waitlist call-to-action |
+| 3 | **CTA** | Get Started call-to-action |
 
 ### Layout Notes
 - Hero: centered layout matching all other pages
@@ -151,14 +151,14 @@ Every page is wrapped in a shared layout shell:
 │  ✓ Feature 2         │  ← flexGrow: 1
 │  ✓ Feature 3         │
 │                      │
-│  [Get-Waitlist →]    │  ← marginTop: 'auto' (always bottom-aligned)
+│  [Get Started →]    │  ← marginTop: 'auto' (always bottom-aligned)
 └─────────────────────┘
 ```
 
 ### Layout Notes
 - Grid: `md={3}` → 4 cards in one row
 - Equal-height cards: `display: 'flex'`, `flexDirection: 'column'`
-- Buttons: identical style on all 4 cards with `aria-label="Get-Waitlist for MultiPost {plan} plan"`
+- Buttons: identical style on all 4 cards with `aria-label="Get Started for MultiPost {plan} plan"`
 - Annual pricing: 20% discount toggle with `Switch` component
 - "Best Value" `Chip`: absolute positioned, `top: -14`, `left: 50%`, `transform: translateX(-50%)`, `overflow: visible` on parent Card
 
@@ -290,7 +290,7 @@ Every page is wrapped in a shared layout shell:
 |---|---|---|
 | 1 | **Hero** | Centered gradient hero with h1 "About MultiPost" |
 | 2 | **Our Story** | 2-column: narrative text (h2 "Our Story") + "Our Mission" card with company values checklist |
-| 3 | **Join Us CTA** | Centered paper card: "Join Our Journey" + Get-Waitlist button |
+| 3 | **Join Us CTA** | Centered paper card: "Join Our Journey" + Get Started button |
 
 ### Layout Notes
 - Hero: centered layout (Box with `textAlign: 'center'`, `maxWidth: 800`, `mx: 'auto'`) — consistent with all other pages
