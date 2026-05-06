@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import SEO from '../components/SEO';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -34,7 +34,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
 import { m } from 'framer-motion';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useParams, useNavigate } from 'react-router-dom';
 
 // Icons
 import SearchIcon from '@mui/icons-material/Search';
@@ -67,6 +67,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import GroupIcon from '@mui/icons-material/Group';
 import DevicesIcon from '@mui/icons-material/Devices';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 // Animation variants
 const fadeInUp = {
@@ -147,67 +148,217 @@ function Callout({ type = 'info', children }) {
   );
 }
 
+// ── Section catalogue ──────────────────────────────────────────────────────
+// Each section lives at /docs/<slug> as a fully-prerendered HTML page so
+// Google can index, rank, and surface them independently. Order MUST match
+// the `<TabPanel index={i}>` indices below.
+//
+// `seoTitle` / `seoDescription` are injected per-route via <SEO>; this is
+// the single biggest SEO lever — each page targets its own keywords.
+const SECTIONS = [
+  {
+    slug: 'getting-started',
+    name: 'Getting Started',
+    icon: <ArticleIcon color="primary" />,
+    seoTitle: 'Getting Started with MultiPost — Quick Start Guide',
+    seoDescription:
+      'Sign up for MultiPost free, connect YouTube, Facebook, Instagram, and TikTok via OAuth, and publish your first video to all of them in minutes. No credit card required.',
+  },
+  {
+    slug: 'uploading-videos',
+    name: 'Uploading Videos',
+    icon: <CloudUploadIcon color="primary" />,
+    seoTitle: 'Uploading Videos — MultiPost Documentation',
+    seoDescription:
+      'Step-by-step upload workflow, supported video formats, per-platform metadata customization, custom thumbnails, and upload limits by plan.',
+  },
+  {
+    slug: 'platforms',
+    name: 'Platform Integrations',
+    icon: <CodeIcon color="primary" />,
+    seoTitle: 'Platform Integrations — YouTube, Facebook, TikTok, Instagram',
+    seoDescription:
+      'Authentication, video requirements, and per-platform features for YouTube (long-form & Shorts), Facebook Pages, TikTok, and Instagram Professional accounts.',
+  },
+  {
+    slug: 'scheduling',
+    name: 'Scheduling',
+    icon: <ScheduleIcon color="primary" />,
+    seoTitle: 'Scheduling & Content Calendar — MultiPost Docs',
+    seoDescription:
+      'Schedule per-platform publish times, drag-and-drop on the Calendar to reschedule, automatic retry on transient failures via Upstash QStash. Available on every plan.',
+  },
+  {
+    slug: 'account-billing',
+    name: 'Account & Billing',
+    icon: <SettingsIcon color="primary" />,
+    seoTitle: 'Account & Billing — MultiPost Documentation',
+    seoDescription:
+      'Subscription plans (Free, Basic, Premium, Enterprise), payment methods via Lemon Squeezy as Merchant of Record, account management, and password & email updates.',
+  },
+  {
+    slug: 'best-practices',
+    name: 'Best Practices',
+    icon: <BookmarkIcon color="primary" />,
+    seoTitle: 'Best Practices for Multi-Platform Video Posting',
+    seoDescription:
+      'Optimize metadata per platform, thumbnail design tips, video format & quality recommendations, posting consistency, cross-platform repurposing, and accessibility.',
+  },
+  {
+    slug: 'troubleshooting',
+    name: 'Troubleshooting',
+    icon: <HelpIcon color="primary" />,
+    seoTitle: 'Troubleshooting — MultiPost Common Issues & Fixes',
+    seoDescription:
+      'Solutions for stuck uploads, OAuth re-authorization, rejected videos, scheduled posts that did not publish, Instagram connection issues, and quality concerns.',
+  },
+];
+
+const slugToIndex = (slug) => {
+  if (!slug) return -1;
+  const clean = String(slug).replace(/^#/, '').toLowerCase();
+  return SECTIONS.findIndex((s) => s.slug === clean);
+};
+
+// Map old hash slugs (from the previous /docs#hash design) to the current
+// path slugs so external links posted before the migration still land in
+// the right place.
+const LEGACY_HASH_REDIRECTS = {
+  'get-started': 'getting-started',
+};
+
 const DocumentationPage = () => {
   const theme = useTheme();
-  const [tabValue, setTabValue] = useState(0);
-  const [sidebarSection, setSidebarSection] = useState(0);
+  const { section: routeSection } = useParams();
+  const navigate = useNavigate();
+
+  // Resolve which section to show: router param wins; if it's missing or
+  // unknown, fall back to the first section (the App.jsx redirect should
+  // make the missing case rare, but this keeps the component safe to
+  // mount under any route).
+  const initialIdx = Math.max(slugToIndex(routeSection), 0);
+  const [tabValue, setTabValue] = useState(initialIdx);
+  const [sidebarSection, setSidebarSection] = useState(initialIdx);
+
+  // Keep React state in sync whenever the URL changes (back/forward,
+  // sidebar click, programmatic navigate).
+  useEffect(() => {
+    const idx = slugToIndex(routeSection);
+    if (idx >= 0) {
+      setTabValue(idx);
+      setSidebarSection(idx);
+    } else if (routeSection) {
+      // Unknown slug — bounce to the first section so the user never sees
+      // a blank page. `replace: true` keeps the bad slug out of history.
+      navigate(`/docs/${SECTIONS[0].slug}`, { replace: true });
+    }
+  }, [routeSection, navigate]);
+
+  // Backwards-compat for old `/docs#scheduling`-style links: translate any
+  // surviving hash slug into the new path. `replaceState` to avoid an
+  // extra history entry.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const hash = window.location.hash.replace(/^#/, '').toLowerCase();
+    if (!hash) return;
+    const mapped = LEGACY_HASH_REDIRECTS[hash] || hash;
+    const idx = slugToIndex(mapped);
+    if (idx >= 0 && SECTIONS[idx].slug !== routeSection) {
+      navigate(`/docs/${SECTIONS[idx].slug}`, { replace: true });
+    }
+  }, [navigate, routeSection]);
+
+  // Single source of truth for switching sections — pushes a real history
+  // entry so the back button works, the URL is shareable, and Google can
+  // crawl every section as its own page.
+  const setActive = useCallback(
+    (idx) => {
+      if (idx < 0 || idx >= SECTIONS.length) return;
+      navigate(`/docs/${SECTIONS[idx].slug}`);
+    },
+    [navigate],
+  );
 
   const handleTabChange = (event, newValue) => {
-    setTabValue(newValue);
+    setActive(newValue);
   };
 
-  // Documentation categories (sidebar)
-  const categories = [
-    { name: 'Getting Started', icon: <ArticleIcon color="primary" /> },
-    { name: 'Uploading Videos', icon: <CloudUploadIcon color="primary" /> },
-    { name: 'Platform Integrations', icon: <CodeIcon color="primary" /> },
-    { name: 'Scheduling', icon: <ScheduleIcon color="primary" /> },
-    { name: 'Account & Billing', icon: <SettingsIcon color="primary" /> },
-    { name: 'Best Practices', icon: <BookmarkIcon color="primary" /> },
-    { name: 'Troubleshooting', icon: <HelpIcon color="primary" /> },
-  ];
+  const activeSection = SECTIONS[tabValue] || SECTIONS[0];
+
+  // Sidebar categories — derived from the single SECTIONS catalogue so
+  // the source of truth stays in one place.
+  const categories = SECTIONS.map((s) => ({ name: s.name, icon: s.icon }));
 
   // Platform integration data
   const platformDocs = [
-    { 
-      name: 'YouTube', 
+    {
+      name: 'YouTube',
       icon: <YouTubeIcon sx={{ color: '#FF0000' }} />,
       color: '#FF0000',
-      description: 'Upload videos, Shorts, manage playlists, thumbnails, end screens, cards, chapters, and privacy settings.',
+      description: 'Upload long-form videos and Shorts with title, description, tags, custom thumbnail, category, and visibility controls.',
       auth: 'OAuth 2.0 via Google Account. You will be redirected to Google to grant MultiPost access to your YouTube channel.',
-      formats: 'MP4, MOV, AVI, WMV, FLV, WebM',
-      maxSize: '256 GB (or 12 hours, whichever is less)',
-      features: ['Video uploads', 'Shorts support', 'Custom thumbnails', 'End screens & cards', 'Video chapters', 'Playlist management', 'Scheduled publishing', 'Privacy settings (Public, Unlisted, Private)'],
+      formats: 'MP4, MOV (H.264 codec recommended)',
+      maxSize: '256 GB or 12 hours per video — whichever is less',
+      features: [
+        'Long-form video uploads',
+        'Shorts (≤ 60 s) with auto-tag',
+        'Custom thumbnails',
+        'Title, description, and tags',
+        'Category selection',
+        'Visibility: Public, Unlisted, Private',
+        'Reframe modes for landscape → 9:16 (blur, crop, pad, original)',
+        'Per-platform scheduled publishing',
+      ],
     },
-    { 
-      name: 'Facebook', 
+    {
+      name: 'Facebook',
       icon: <FacebookIcon sx={{ color: '#1877F2' }} />,
       color: '#1877F2',
-      description: 'Publish videos to your personal timeline, business pages, or groups with audience targeting.',
-      auth: 'OAuth 2.0 via Facebook Login. Grant page publishing permissions for your business pages.',
+      description: 'Publish videos to a connected Facebook Page with audience targeting and optional location.',
+      auth: 'OAuth 2.0 via Facebook Login. Grant page-publishing permissions for the Pages you want to manage.',
       formats: 'MP4, MOV (H.264 codec recommended)',
       maxSize: '10 GB (max 240 minutes)',
-      features: ['Timeline & Page uploads', 'Reels support', 'Audience targeting', 'Auto-sharing to groups', 'Caption support', 'Engagement settings', 'Scheduled publishing'],
+      features: [
+        'Page video uploads',
+        'Title and description',
+        'Audience targeting (Public, Friends, Only me)',
+        'Optional location tag',
+        'Custom thumbnails',
+        'Per-platform scheduled publishing',
+      ],
     },
-    { 
-      name: 'TikTok', 
+    {
+      name: 'TikTok',
       icon: <MusicNoteIcon sx={{ color: '#000000' }} />,
       color: '#EE1D52',
-      description: 'Upload short-form vertical videos with hashtag management and sound integration.',
+      description: 'Upload short-form vertical videos with title, description, tags, and post-level interaction controls.',
       auth: 'OAuth 2.0 via TikTok Login. You will be redirected to TikTok to authorize access.',
-      formats: 'MP4, WebM (vertical 9:16 recommended)',
+      formats: 'MP4, MOV, WebM (vertical 9:16 recommended)',
       maxSize: '4 GB (max 10 minutes)',
-      features: ['Direct video uploads', 'Hashtag management', 'Caption support', 'Privacy settings', 'Comment controls', 'Duet/Stitch settings'],
+      features: [
+        'Direct video uploads',
+        'Title, description, and tags',
+        'Allow / disallow comments',
+        'Allow / disallow Duets',
+        'Allow / disallow Stitch',
+        'Per-platform scheduled publishing (subject to TikTok API)',
+      ],
     },
-    { 
-      name: 'Instagram', 
+    {
+      name: 'Instagram',
       icon: <InstagramIcon sx={{ color: '#C13584' }} />,
       color: '#C13584',
-      description: 'Publish Reels, feed videos, and Stories. Optimize for Instagram\'s vertical format.',
-      auth: 'OAuth 2.0 via Instagram/Facebook Login. Requires a Professional or Creator account.',
-      formats: 'MP4, MOV (H.264, min 3 seconds, max 90 seconds for Reels)',
+      description: 'Publish a single video to a connected Instagram Professional or Creator account, optimised for the vertical 9:16 format.',
+      auth: 'OAuth 2.0 via Instagram/Facebook Login. Requires a Professional or Creator account linked to a Facebook Page.',
+      formats: 'MP4, MOV (H.264, vertical 9:16 recommended)',
       maxSize: '4 GB',
-      features: ['Reels support', 'Feed video uploads', 'Story publishing', 'Caption templates', 'Hashtag management', 'Location tagging', 'Cover image selection'],
+      features: [
+        'Video uploads (single video)',
+        'Caption with hashtags',
+        'Cover-frame selection (first frame or custom)',
+        'Custom thumbnails',
+        'Per-platform scheduled publishing',
+      ],
     },
   ];
 
@@ -222,19 +373,19 @@ const DocumentationPage = () => {
         '@type': 'HowToStep',
         name: 'Create Your Account',
         text: 'Sign up for MultiPost by visiting our website and creating an account. You\'ll need to provide a valid email address and create a secure password.',
-        url: 'https://multipost.pro/docs',
+        url: 'https://multipost.pro/docs/getting-started',
       },
       {
         '@type': 'HowToStep',
         name: 'Connect Your Social Media Accounts',
         text: 'Connect your social media accounts by authorizing MultiPost to publish content on your behalf. We use secure OAuth protocols for authentication.',
-        url: 'https://multipost.pro/docs',
+        url: 'https://multipost.pro/docs/platforms',
       },
       {
         '@type': 'HowToStep',
         name: 'Upload Your First Video',
         text: 'Upload a video from your dashboard, add titles, descriptions, and tags, then select the platforms where you want to publish.',
-        url: 'https://multipost.pro/docs',
+        url: 'https://multipost.pro/docs/uploading-videos',
       },
     ],
   };
@@ -242,9 +393,9 @@ const DocumentationPage = () => {
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <SEO
-        title="Documentation — Free Auto Posting Tool"
-        description="Get started with MultiPost for free. Guides, API references, and tutorials for free multi-platform video distribution. Start for Free today."
-        path="/docs"
+        title={activeSection.seoTitle}
+        description={activeSection.seoDescription}
+        path={`/docs/${activeSection.slug}`}
         schema={howToSchema}
       />
       {/* Hero Section */}
@@ -355,7 +506,15 @@ const DocumentationPage = () => {
               <Link component={RouterLink} to="/" color="inherit" underline="hover">
                 Home
               </Link>
-              <Typography color="text.primary">Documentation</Typography>
+              <Link
+                component={RouterLink}
+                to={`/docs/${SECTIONS[0].slug}`}
+                color="inherit"
+                underline="hover"
+              >
+                Documentation
+              </Link>
+              <Typography color="text.primary">{activeSection.name}</Typography>
             </Breadcrumbs>
           </Box>
 
@@ -391,10 +550,7 @@ const DocumentationPage = () => {
                       button 
                       key={index}
                       selected={sidebarSection === index}
-                      onClick={() => {
-                        setSidebarSection(index);
-                        setTabValue(index);
-                      }}
+                      onClick={() => setActive(index)}
                       sx={{ 
                         borderRadius: 1,
                         mb: 0.5,
@@ -518,7 +674,7 @@ const DocumentationPage = () => {
                       </StepLabel>
                       <StepContent>
                         <Typography paragraph color="text.secondary">
-                          Track the status of all your uploads from the <strong>Activity</strong> page. View which platforms succeeded, any errors that occurred, and basic engagement metrics once your content goes live.
+                          Track the status of all your uploads from the <strong>My Videos</strong> and <strong>Calendar</strong> pages. See which platforms succeeded, retry any that failed, and reschedule pending uploads with drag-and-drop.
                         </Typography>
                       </StepContent>
                     </Step>
@@ -531,14 +687,14 @@ const DocumentationPage = () => {
 
                   <Grid container spacing={2} sx={{ mb: 4 }}>
                     {[
-                      { icon: <CloudUploadIcon color="primary" />, title: 'Multi-Platform Upload', desc: 'Upload your videos to multiple platforms with a single action, saving hours of manual work.' },
-                      { icon: <ScheduleIcon color="primary" />, title: 'Scheduled Publishing', desc: 'Plan your content calendar by scheduling uploads for specific dates and times across all platforms.' },
-                      { icon: <VideoLibraryIcon color="primary" />, title: 'Video Management', desc: 'Organize your video library, manage metadata, and track upload history from one dashboard.' },
-                      { icon: <SpeedIcon color="primary" />, title: 'Batch Processing', desc: 'Prepare and upload multiple videos simultaneously. Perfect for creators with regular posting schedules.' },
-                      { icon: <ImageIcon color="primary" />, title: 'Thumbnail Tools', desc: 'Upload custom thumbnails per platform. Each platform gets optimized dimensions automatically.' },
-                      { icon: <SubtitlesIcon color="primary" />, title: 'Captions & Subtitles', desc: 'Upload SRT files or auto-generate captions. Multi-language support included.' },
-                      { icon: <AnalyticsIcon color="primary" />, title: 'Performance Analytics', desc: 'Track video performance across platforms with unified metrics and insights.' },
-                      { icon: <SecurityIcon color="primary" />, title: 'Secure OAuth', desc: 'We never store your passwords. All connections use industry-standard OAuth 2.0 protocols.' },
+                      { icon: <CloudUploadIcon color="primary" />, title: 'Multi-Platform Upload', desc: 'Send one video to YouTube, Facebook, Instagram, and TikTok in a single action — each with its own metadata.' },
+                      { icon: <ScheduleIcon color="primary" />, title: 'Per-Platform Scheduling', desc: 'Set a different publish time per platform from the upload form, or drag-and-drop on the Calendar to reschedule.' },
+                      { icon: <VideoLibraryIcon color="primary" />, title: 'Video Library', desc: 'Browse every upload, view per-platform status, retry failures, or cancel a scheduled post from My Videos.' },
+                      { icon: <SyncIcon color="primary" />, title: 'Auto-Retry Failed Jobs', desc: 'Transient platform errors are retried automatically via our queue (Upstash QStash). You get a clear status when something needs your attention.' },
+                      { icon: <ImageIcon color="primary" />, title: 'Custom Thumbnails', desc: 'Upload your own thumbnail per video. We handle the per-platform sizing.' },
+                      { icon: <DevicesIcon color="primary" />, title: 'Reframe for Shorts', desc: 'Convert a landscape source into 9:16 for YouTube Shorts with blur, crop, pad, or original modes — picked at upload time.' },
+                      { icon: <SmartToyIcon color="primary" />, title: 'Firdha AI Assistant', desc: 'Ask Firdha for caption ideas, hashtag suggestions, or title rewrites — built into the upload flow.' },
+                      { icon: <SecurityIcon color="primary" />, title: 'Secure OAuth', desc: 'We never receive or store your social-media passwords. OAuth 2.0 with AES-256-GCM encryption at rest.' },
                     ].map((feature, i) => (
                       <Grid item xs={12} sm={6} key={i}>
                         <Card sx={{ height: '100%', borderRadius: 2, boxShadow: 'none', border: '1px solid rgba(0, 0, 0, 0.08)' }}>
@@ -689,17 +845,19 @@ const DocumentationPage = () => {
                       </TableHead>
                       <TableBody>
                         {[
-                          ['Custom Title', true, true, false, false],
-                          ['Description', true, true, true, true],
-                          ['Tags / Hashtags', true, false, true, true],
-                          ['Custom Thumbnail', true, true, false, true],
-                          ['Privacy Settings', true, true, true, false],
-                          ['Scheduled Publishing', true, true, false, true],
-                          ['Captions / Subtitles', true, true, false, false],
-                          ['Chapters / Sections', true, false, false, false],
-                          ['End Screens & Cards', true, false, false, false],
-                          ['Playlist Assignment', true, false, false, false],
-                          ['Location Tagging', false, true, false, true],
+                          ['Title', true, true, true, false],
+                          ['Description', true, true, true, false],
+                          ['Caption (with hashtags)', false, false, false, true],
+                          ['Tags', true, false, true, false],
+                          ['Custom Thumbnail', true, true, true, true],
+                          ['Visibility (Public / Unlisted / Private)', true, false, false, false],
+                          ['Audience targeting (Public / Friends / Only me)', false, true, false, false],
+                          ['Category selection', true, false, false, false],
+                          ['Location tag', false, true, false, false],
+                          ['Comments / Duet / Stitch toggles', false, false, true, false],
+                          ['Cover-frame selection (first / custom)', false, false, false, true],
+                          ['Reframe landscape → 9:16 (Shorts)', true, false, false, false],
+                          ['Per-platform scheduled publishing', true, true, true, true],
                         ].map(([setting, yt, fb, tt, ig], i) => (
                           <TableRow key={i}>
                             <TableCell sx={{ fontWeight: 500 }}>{setting}</TableCell>
@@ -734,12 +892,13 @@ const DocumentationPage = () => {
                           ['Daily Uploads', '1/day', '3/day', '5/day', '10/day'],
                           ['Scheduled Uploads', '5/month', '10/month', '30/month', 'Unlimited'],
                           ['Platform Connections', 'Unlimited', 'Unlimited', 'Unlimited', 'Unlimited'],
+                          ['Output Quality', '720p', '1080p', '1440p', '4K'],
                           ['Custom Thumbnails', '✓', '✓', '✓', '✓'],
-                          ['Basic Video Metadata', '✓', '✓', '✓', '✓'],
-                          ['Captions & Subtitles', '—', '—', '✓', '✓'],
-                          ['Video Chapters', '—', '—', '✓', '✓'],
-                          ['Analytics & Insights', '—', '—', '—', '✓'],
-                          ['API Access', '—', '—', '—', '✓'],
+                          ['Per-Platform Metadata', '✓', '✓', '✓', '✓'],
+                          ['Save Drafts', '—', '✓', '✓', '✓'],
+                          ['Auto-Retry Failed Uploads', '✓', '✓', '✓', '✓'],
+                          ['Firdha AI Assistant', '✓', '✓', '✓', '✓'],
+                          ['Priority Support', '—', '—', '✓', '✓'],
                         ].map(([feature, free, basic, premium, enterprise], i) => (
                           <TableRow key={i}>
                             <TableCell sx={{ fontWeight: 500 }}>{feature}</TableCell>
@@ -838,7 +997,7 @@ const DocumentationPage = () => {
                     Scheduling & Content Calendar
                   </Typography>
                   <Typography paragraph color="text.secondary">
-                    Plan your content strategy by scheduling uploads to go live at the optimal time for each platform. Available on Premium and Enterprise plans.
+                    Plan your content strategy by scheduling uploads to go live at the optimal time for each platform. <strong>Scheduling is available on every plan</strong> — quota varies (Free: 5/month, Basic: 10/month, Premium: 30/month, Enterprise: unlimited).
                   </Typography>
 
                   <Typography variant="h5" component="h3" fontWeight={600} sx={{ mt: 4, mb: 2 }}>
@@ -852,8 +1011,8 @@ const DocumentationPage = () => {
                     {[
                       { title: 'Time Zone Handling', desc: 'Your scheduled time is based on your local time zone as set in your account settings. MultiPost converts this to UTC internally and ensures each platform receives the correct publish time.' },
                       { title: 'Per-Platform Scheduling', desc: 'Set different publish times for each platform. For example, post to YouTube at 9 AM, TikTok at 12 PM, and Instagram at 6 PM to maximize engagement across audiences.' },
-                      { title: 'Queue Management', desc: 'View all scheduled posts in your Content Calendar. Easily drag to reschedule, or click to edit metadata before a post goes live.' },
-                      { title: 'Automatic Retry', desc: 'If a scheduled upload fails (e.g., due to a temporary API issue), MultiPost will automatically retry up to 3 times within the next 30 minutes.' },
+                      { title: 'Calendar Drag-and-Drop', desc: 'View every scheduled post in the Calendar. Drag a card to a new day to reschedule, or click to edit metadata before it goes live.' },
+                      { title: 'Automatic Retry', desc: 'If a scheduled publish fails because of a transient platform error (rate limit, brief 5xx, etc.), our queue (Upstash QStash) retries with exponential backoff before surfacing a hard failure for you to action.' },
                     ].map((item, i) => (
                       <Box key={i} sx={{ mb: 3, pl: 2, borderLeft: `3px solid ${theme.palette.primary.main}` }}>
                         <Typography variant="subtitle1" fontWeight={600}>{item.title}</Typography>
@@ -892,7 +1051,7 @@ const DocumentationPage = () => {
                   </TableContainer>
 
                   <Callout type="tip">
-                    These are general guidelines based on industry research. Your optimal posting times may vary depending on your audience demographics and content niche. Use the Analytics features (Enterprise plan) to discover your audience's peak activity hours.
+                    These are general guidelines based on industry research. Your optimal posting times will vary by audience and niche — use each platform's native analytics (YouTube Studio, Meta Business Suite, TikTok Studio, Instagram Insights) to find your audience's peak hours, then schedule from MultiPost.
                   </Callout>
                 </TabPanel>
 
@@ -953,9 +1112,9 @@ const DocumentationPage = () => {
                     { title: 'Changing Your Password', desc: 'Go to Settings → Security. Click "Change Password" and enter your current password followed by your new one. We recommend using a strong, unique password with at least 12 characters.' },
                     { title: 'Updating Email Address', desc: 'Navigate to Settings → Profile. Update your email address and verify it via the confirmation link sent to your new email. Your billing notifications will be sent to the updated address.' },
                     { title: 'Managing Connected Accounts', desc: 'Go to Settings → Connected Accounts to view all linked social media profiles. Click "Disconnect" to revoke access, or "Reconnect" to refresh expired OAuth tokens.' },
-                    { title: 'Upgrading Your Plan', desc: 'Visit Settings → Subscription. Select your desired plan and confirm. Upgrades take effect immediately, with prorated billing for the remainder of your current cycle.' },
-                    { title: 'Cancelling Your Subscription', desc: 'Go to Settings → Subscription → Cancel Plan. Your access continues until the end of your current billing period. Your data is retained for 30 days after cancellation in case you decide to return.' },
-                    { title: 'Payment Methods', desc: 'We accept all major credit cards (Visa, Mastercard, Amex) and PayPal. Enterprise customers can arrange bank transfers. Update your payment method under Settings → Billing.' },
+                    { title: 'Upgrading or Switching Your Plan', desc: 'Visit Billing → Manage Subscription, pick the plan you want, and confirm. Upgrades take effect immediately and the remainder of the current cycle is pro-rated by Lemon Squeezy.' },
+                    { title: 'Cancelling Your Subscription', desc: 'Cancel any time from the in-app Billing page or the Lemon Squeezy customer-portal link in your most recent receipt. Your paid features stay active until the end of the period you have already paid for; the account then reverts to the Free plan. See our Refund Policy for the 7-day money-back guarantee on technical issues.' },
+                    { title: 'Payment Methods', desc: 'Subscriptions are billed through Lemon Squeezy as our Merchant of Record. Lemon Squeezy supports major credit and debit cards (Visa, Mastercard, American Express) and PayPal, and handles VAT / GST / sales tax for you. Update your card-on-file from the Lemon Squeezy customer portal linked in any receipt.' },
                   ].map((item, i) => (
                     <Box key={i} sx={{ mb: 3 }}>
                       <Typography variant="subtitle1" fontWeight={600}>{item.title}</Typography>
@@ -1034,10 +1193,10 @@ const DocumentationPage = () => {
                       title: '6. Accessibility & Captions',
                       icon: <SubtitlesIcon color="primary" />,
                       tips: [
-                        'Always include captions/subtitles. 85% of Facebook videos are watched without sound.',
-                        'Use MultiPost\'s auto-captioning feature or upload SRT files for accurate multi-language subtitles.',
-                        'Add descriptive alt text to thumbnails for screen readers.',
-                        'Consider color-blind friendly palettes in your video graphics and thumbnails.',
+                        'Always include captions or burned-in subtitles. 85% of Facebook videos are watched without sound.',
+                        'MultiPost does not currently embed captions for you — the simplest workflow is to bake captions into the video file in your editor before upload, or to add them in each platform\'s native caption editor after publishing (YouTube Studio, Meta Business Suite, TikTok Studio).',
+                        'Write a clear, descriptive title and description — they double as the accessible label for the video on every platform.',
+                        'Use color-blind-friendly palettes in your thumbnails and on-screen graphics so the content reads at any size.',
                       ]
                     },
                   ].map((section, i) => (

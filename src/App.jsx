@@ -19,6 +19,7 @@ import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
+import RefundPage from './pages/RefundPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import DocumentationPage from './pages/DocumentationPage';
@@ -68,9 +69,18 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/terms" element={<TermsPage />} />
+              <Route path="/refund" element={<RefundPage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
-              <Route path="/docs" element={<DocumentationPage />} />
+              {/* /docs is now a router segment: each section gets its own
+                  prerendered HTML page with section-specific <title> and
+                  meta description for independent ranking. The bare /docs
+                  hop redirects to the first section so users (and Google)
+                  always land on real content. The Documentation page also
+                  contains a backwards-compat redirect for surviving
+                  /docs#hash links. */}
+              <Route path="/docs" element={<Navigate to="/docs/getting-started" replace />} />
+              <Route path="/docs/:section" element={<DocumentationPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Box>

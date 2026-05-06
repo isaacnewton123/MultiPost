@@ -37,7 +37,7 @@ const Footer = () => {
       links: [
         { name: 'FAQ', path: '/faq' },
         { name: 'Blog', path: '/blog' },
-        { name: 'Documentation', path: '/docs' },
+        { name: 'Documentation', path: '/docs/getting-started' },
         { name: 'Support', path: '/contact' },
       ]
     },
@@ -46,6 +46,7 @@ const Footer = () => {
       links: [
         { name: 'Privacy Policy', path: '/privacy' },
         { name: 'Terms of Service', path: '/terms' },
+        { name: 'Refund Policy', path: '/refund' },
       ]
     },
   ];

@@ -20,10 +20,18 @@ const STATIC_PAGES = [
   { path: '/about',    changefreq: 'monthly', priority: '0.7' },
   { path: '/faq',      changefreq: 'monthly', priority: '0.7' },
   { path: '/blog',     changefreq: 'weekly',  priority: '0.8' },
-  { path: '/docs',     changefreq: 'monthly', priority: '0.7' },
+  // Documentation: one entry per section so each is independently rankable.
+  { path: '/docs/getting-started',  changefreq: 'monthly', priority: '0.8' },
+  { path: '/docs/uploading-videos', changefreq: 'monthly', priority: '0.8' },
+  { path: '/docs/platforms',        changefreq: 'monthly', priority: '0.8' },
+  { path: '/docs/scheduling',       changefreq: 'monthly', priority: '0.7' },
+  { path: '/docs/account-billing',  changefreq: 'monthly', priority: '0.6' },
+  { path: '/docs/best-practices',   changefreq: 'monthly', priority: '0.7' },
+  { path: '/docs/troubleshooting',  changefreq: 'monthly', priority: '0.6' },
   { path: '/contact',  changefreq: 'monthly', priority: '0.6' },
   { path: '/privacy',  changefreq: 'yearly',  priority: '0.3' },
   { path: '/terms',    changefreq: 'yearly',  priority: '0.3' },
+  { path: '/refund',   changefreq: 'yearly',  priority: '0.3' },
 ];
 
 function extractDate(raw) {

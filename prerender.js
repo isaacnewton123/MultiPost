@@ -27,8 +27,18 @@ const STATIC_ROUTES = [
   '/about',
   '/privacy',
   '/terms',
+  '/refund',
   '/blog',
-  '/docs',
+  // Documentation: each section is its own prerendered page with its own
+  // <title>/meta description for independent SEO ranking. /docs itself is
+  // a SPA redirect to /docs/getting-started, so we don't prerender it.
+  '/docs/getting-started',
+  '/docs/uploading-videos',
+  '/docs/platforms',
+  '/docs/scheduling',
+  '/docs/account-billing',
+  '/docs/best-practices',
+  '/docs/troubleshooting',
 ];
 
 // ── Sitemap metadata ────────────────────────────────────────────────
@@ -40,10 +50,18 @@ const SITEMAP_META = {
   '/about':     { changefreq: 'monthly', priority: '0.7' },
   '/faq':       { changefreq: 'monthly', priority: '0.7' },
   '/blog':      { changefreq: 'weekly',  priority: '0.8' },
-  '/docs':      { changefreq: 'monthly', priority: '0.7' },
+  // One sitemap entry per docs section — each is its own prerendered page.
+  '/docs/getting-started':    { changefreq: 'monthly', priority: '0.8' },
+  '/docs/uploading-videos':   { changefreq: 'monthly', priority: '0.8' },
+  '/docs/platforms':          { changefreq: 'monthly', priority: '0.8' },
+  '/docs/scheduling':         { changefreq: 'monthly', priority: '0.7' },
+  '/docs/account-billing':    { changefreq: 'monthly', priority: '0.6' },
+  '/docs/best-practices':     { changefreq: 'monthly', priority: '0.7' },
+  '/docs/troubleshooting':    { changefreq: 'monthly', priority: '0.6' },
   '/contact':   { changefreq: 'monthly', priority: '0.6' },
   '/privacy':   { changefreq: 'yearly',  priority: '0.3' },
   '/terms':     { changefreq: 'yearly',  priority: '0.3' },
+  '/refund':    { changefreq: 'yearly',  priority: '0.3' },
 };
 
 // ── Helpers ──────────────────────────────────────────────────────────
